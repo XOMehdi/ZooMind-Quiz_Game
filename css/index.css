@@ -1,0 +1,267 @@
+/* body {
+    padding: 20px;
+    background-color: #f80e0e;
+    color: #ffffff;
+}
+
+#flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    text-align: center;
+    margin: auto;
+}
+
+#options-box {
+    display: inline-block;
+    background-color: #47b806;
+    border-radius: 20px;
+    width: 250px;
+    height: 200px;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.sign_up-sign_in {
+    display: inline-block;
+} */
+
+
+
+img {
+    display: block;
+}
+
+#site-logo{
+    width: 80px;
+    border-radius: 40px;
+}
+
+
+
+
+
+/* ===================================== */
+/* ===================================== */
+/* ===================================== */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+  #sign_up-box {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 650px;
+    height: 550px;
+    margin: 100px auto;
+    border-radius: 30px;
+    border: 1px groove #dccece;
+    text-align: center;
+    background-color: #ffffff;
+    box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  #heading-box {
+    position: relative;
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+    padding: 25px;
+    text-align: center;
+    background-color: #eff0f1;
+  }
+  
+  #heading-box img {
+    position: absolute;
+    width: 30px;
+    border-radius: 50px;
+    top: 10px;
+    left: 20px;
+  }
+  
+  #form-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 50px 0 20px 0;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #0f87e2;
+  }
+  
+  a:hover {
+    text-decoration:underline;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    height: 55px;
+    border: 2px groove #ffffff;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 18px;
+    outline: none;
+  }
+  
+  input[type="text"]:focus , input[type="password"]:focus {
+    border: 1px solid #0071e3;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .input-name {
+    margin-top: 15px;
+    width: 220px;
+  }
+  
+  #username, input[type="password"] {
+    width: 443px;
+  }
+  
+  
+  .input-box {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .placeholder-label {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    transition: top 0.3s, font-size 0.3s;
+    font-size: 18px;
+    color: #8c8784;
+  }
+  
+  label[for="first_name"], label[for="last_name"]{
+    top: 30px;
+  }
+  
+  #username:focus + label,
+  #sign_in-username:focus + label,
+  input[type="password"]:focus + label {
+    top: 4px;
+    font-size: 12px;
+  }
+  
+  .input-name:focus + label {
+    top: 18px;
+    font-size: 12px;
+  }
+  
+  
+  .btn {
+    border-radius: 5px;
+    padding: 7px 15px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  input[type="button"] {
+    border: 2px solid #dadada;
+    color: #298fdf;
+  }
+  
+  input[type="submit"] {
+    border: 2px solid #1f8adb;
+    background-color: #298fdf;
+    color: #ffffff;
+  }
+  
+  #btn-box {
+    width: 100%;
+    margin-top: 35px;
+    border-radius: 0 0 15px 15px;
+    padding: 15px;
+    text-align: end;
+    background-color: #f7f7f7;
+  }
+  
+  
+  /* sign in form */
+  #sign_in-box {
+    display: none;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 650px;
+    height: 550px;
+    margin: 100px auto;
+    border-radius: 30px;
+    border: 1px groove #dccece;
+    box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+  }
+  
+  #sign_in-form-box {
+    text-align: center;
+  }
+  
+  #main-input-box {
+    position: relative;
+  }
+  
+  #sign_in-username {
+    border-radius: 15px 15px 0 0;
+    width: 500px;
+  }
+  
+  #sign_in-password {
+    width: 500px;
+    border-radius: 0 0 15px 15px;
+  }
+  
+  #sign_in-username:focus , #sign_in-password:focus {
+    border: 2px solid #0071e3;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  #forward-icon {
+    display: block;
+    width: 30px;
+    position: absolute;
+    bottom: 14px;
+    right: 85px;
+  }
+  
+  #site_logo-box {
+    width: 150px;
+  }
+  
+  #site_logo-box img {
+    display: inline-block;
+    width: 100%;
+    border-radius: 100px;
+  }
+  
+  #checkbox-box {
+    margin-top: 70px;
+    color: #4a4848;
+  }
+  
+  #forgot-box {
+    margin-top: 30px;
+  }
+  
+  #forgot-box a {
+    display: block;
+    margin-bottom: 10px;
+  }

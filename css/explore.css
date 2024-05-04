@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+}
+
+
+header {
+    height: 50px;
+    box-sizing: border-box;
+    padding-top: 10px;
+    text-align: center;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+main {
+    padding: 20px;
+}
+
+li {
+    display: inline-block;
+}
+
+header a {
+    color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+}
