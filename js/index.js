@@ -11,6 +11,19 @@ const signInerrorMessage = document.getElementById("sign_in-error-message");
 const passwordStrength = document.getElementById("password-strength");
 const btnCancel = document.getElementById("btn-cancel");
 const btnSignUp = document.getElementById("btn-sign_up");
+const inputFields = document.querySelectorAll(
+  'input[type="text"], input[type="password"]'
+);
+
+Array.from(inputFields).forEach((inputField) => {
+  inputField.addEventListener("keyup", () => {
+    if (inputField.value.length > 0) {
+      inputField.classList.add("has-text");
+    } else {
+      inputField.classList.remove("has-text");
+    }
+  });
+});
 
 btnCancel.addEventListener("click", animateFormUp);
 btnSignUp.addEventListener("submit", signUp);
@@ -22,6 +35,10 @@ passwordInput.addEventListener("blur", isValidPassword);
 
 signInLink.addEventListener("click", animateFormUp);
 signUpLink.addEventListener("click", animateFormDown);
+
+if (signInPasswordInput.value.length > 0) {
+  signInPasswordInput.classList.add("has-text");
+}
 
 function animateFormUp() {
   signUpBox.style.display = "none";

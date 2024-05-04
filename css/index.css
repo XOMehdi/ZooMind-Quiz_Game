@@ -154,9 +154,9 @@ img {
     top: 30px;
   }
   
-  #username:focus + label,
-  #sign_in-username:focus + label,
-  input[type="password"]:focus + label {
+  #username:focus + label, .has-text + label,
+  #sign_in-username:focus + label, .has-text + label,
+  input[type="password"]:focus + label, .has-text + label {
     top: 4px;
     font-size: 12px;
   }
