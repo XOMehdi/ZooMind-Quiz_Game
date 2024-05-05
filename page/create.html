@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../css/create.css" />
+    <script src="../js/create.js" defer></script>
+    <title>ZooMind - Create Quiz</title>
+  </head>
+
+  <body>
+    <header></header>
+    <main>
+      <form
+        id="create-quiz-form"
+        action="../db/process_create.php"
+        method="post"
+      >
+        <h1>Create Quiz</h1>
+        <label for="title">Title</label>
+        <input id="title" type="text" name="title" />
+
+        <label for="description">Description</label>
+        <textarea name="description" id="description"></textarea>
+
+        <label for="category">Category</label>
+        <input
+          id="category"
+          type="text"
+          name="category"
+          placeholder="Cat / Dog / Bird / Fish etc"
+        />
+        <ol id="ordered-list-question">
+          <li>
+            <div id="q1-box" class="question-box">
+              <h4 contenteditable="true" name="q1-statement">
+                Write your question statement here
+              </h4>
+              <input
+                id="q1-opt1"
+                class="radio-option"
+                type="radio"
+                name="q1-option"
+                value=""
+              />
+              <label for="q1-opt1" contenteditable="true"
+                >Write your option here</label
+              >
+              <span class="add-opt-icon">+</span>
+              <br />
+            </div>
+          </li>
+        </ol>
+        <img
+          id="add-ques-icon"
+          src="../img/add_ques_icon.png"
+          alt="add new question image icon"
+        />
+        <input id="btn-post" type="submit" name="btn-post" value="Post" />
+      </form>
+    </main>
+    <footer></footer>
+  </body>
+</html>

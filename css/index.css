@@ -166,7 +166,6 @@ img {
     font-size: 12px;
   }
   
-  
   .btn {
     border-radius: 5px;
     padding: 7px 15px;
@@ -220,7 +219,7 @@ img {
   }
   
   #sign_in-username {
-    border-radius: 15px 15px 0 0;
+    border-radius: 15px;
     width: 500px;
   }
   
@@ -238,7 +237,7 @@ img {
     display: block;
     width: 30px;
     position: absolute;
-    bottom: 14px;
+    bottom: 32px;
     right: 85px;
   }
   
@@ -264,4 +263,10 @@ img {
   #forgot-box a {
     display: block;
     margin-bottom: 10px;
+  }
+
+  #input-box-password {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
   }

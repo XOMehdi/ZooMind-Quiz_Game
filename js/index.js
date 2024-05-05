@@ -28,6 +28,20 @@ Array.from(inputFields).forEach((inputField) => {
 btnCancel.addEventListener("click", animateFormUp);
 btnSignUp.addEventListener("submit", signUp);
 
+signInUsernameInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+
+    signInUsernameInput.style.borderRadius = "15px 15px 0 0";
+    const inputBoxPassword = document.getElementById("input-box-password");
+    inputBoxPassword.style.height = "55px";
+
+    const forwardIcon = document.getElementById("forward-icon");
+    forwardIcon.style.bottom = "14px";
+    forwardIcon.style.right = "10px";
+  }
+});
+
 signInPasswordInput.addEventListener("keypress", signIn);
 
 usernameInput.addEventListener("blur", isValidUsername);
