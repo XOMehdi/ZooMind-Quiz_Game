@@ -10,19 +10,21 @@ if (isset($_POST['btn-post'])) {
     $description = $_POST["description"];
     $category = $_POST["category"];
     $difficulty = $_POST["difficulty"];
+    $questions = $_POST["questions"];
+
+
     // $upload_by = $_SESSION["username"];
     $upload_by = "abc";
-    $upload_on = date("d/m/y");
+    $upload_on = date("y/m/d");
 
 
-    $questions = $_POST["questions"];
 
     print_r($questions);
 
 
-    $sql = "INSERT INTO quiz (title, description, category, difficulty, upload_by, upload_on) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO quiz (title, description, category, difficulty, count_attempt, count_passed, upload_by, upload_on) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $query = $conn->prepare($sql);
-    $query->execute([$title, $description, $category, $difficulty, $upload_by, $upload_on]);
+    $query->execute([$title, $description, $category, $difficulty, "0", "0", $upload_by, $upload_on]);
 
     $sql = "SELECT number FROM quiz ORDER BY number DESC LIMIT 1";
     $result = $conn->query($sql);
@@ -61,15 +63,10 @@ if (isset($_POST['btn-post'])) {
 
 
 
-
-
-
-        // hardcode correct option for a question
-        $is_answer = "0";
         foreach ($question["options"] as $index => $option) {
 
 
-
+            $is_answer = ($index + 1 == $question["correct_option"]) ? "1" : "0";
 
             $sql = "INSERT INTO options (title, is_answer, question_id) VALUES (?, ?, ?)";
             $query = $conn->prepare($sql);
@@ -80,6 +77,7 @@ if (isset($_POST['btn-post'])) {
 
             echo ($index + 1) . "- " . $option . "<br>";
         }
+        echo $question["correct_option"] . "<br>";
     }
 } else {
     echo "Form not submitted!";

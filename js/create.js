@@ -21,6 +21,11 @@ addQuestionIcon.addEventListener("click", function () {
   const questionCount = questionList.children.length;
   console.log(questionCount);
 
+  const correctOptionInput = document.createElement("input");
+  correctOptionInput.type = "number";
+  correctOptionInput.name = `questions[${questionCount}][correct_option]`;
+  correctOptionInput.placeholder = "Correct option number";
+
   const li = document.createElement("li");
   const div = document.createElement("div");
   div.classList.add("question-box");
@@ -44,7 +49,6 @@ addQuestionIcon.addEventListener("click", function () {
   optionListItem.appendChild(optionInput);
   optionList.appendChild(optionListItem);
 
-  // Add functionality to add new options for this question
   const addOptionButton = document.createElement("span");
   addOptionButton.classList.add("add-option-icon");
   addOptionButton.textContent = "+";
@@ -58,12 +62,16 @@ addQuestionIcon.addEventListener("click", function () {
 
     newOptionListItem.appendChild(newOptionInput);
     optionList.appendChild(newOptionListItem);
+    optionList.insertBefore(newOptionListItem, addOptionButton);
   });
+
+  optionList.appendChild(addOptionButton);
 
   div.appendChild(questionInput);
   div.appendChild(optionList);
-  div.appendChild(addOptionButton);
+  div.appendChild(correctOptionInput);
 
   li.appendChild(div);
   questionList.appendChild(li);
+  questionList.appendChild(document.createElement("br"));
 });
