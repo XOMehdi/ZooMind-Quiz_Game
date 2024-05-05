@@ -1,142 +1,69 @@
-const orderedListQuestion = document.getElementById("ordered-list-question");
-const orderedListOption = document.getElementById("ordered-list-option");
-
-const addOptionIcons = document.getElementsByClassName("add-option-icon");
 const addQuestionIcon = document.getElementById("add-question-icon");
-const btnPost = document.getElementById("btn-post");
+const addOptionIcon = document.getElementById("add-option-icon");
 
-const radioOptions = document.getElementsByClassName("question-option");
+addOptionIcon.addEventListener("click", () => {
+  optionList = document.getElementById("ordered-list-option");
 
-Array.from(radioOptions).forEach((radioOption) => {
-  radioOption.nextElementSibling.addEventListener("keyup", () => {
-    radioOption.value = radioOption.nextElementSibling.innerText;
-  });
+  const newOptionListItem = document.createElement("li");
+  const newOptionInput = document.createElement("input");
+  newOptionInput.type = "text";
+  newOptionInput.classList.add("question-option");
+
+  newOptionInput.name = `questions[0][options][]`;
+  newOptionInput.value = "Write your option here";
+
+  newOptionListItem.appendChild(newOptionInput);
+  optionList.insertBefore(newOptionListItem, addOptionIcon);
 });
 
-questionNum = orderedListQuestion.childElementCount;
-optionNum = orderedListOption.childElementCount;
+addQuestionIcon.addEventListener("click", function () {
+  const questionList = document.getElementById("ordered-list-question");
+  const questionCount = questionList.children.length;
+  console.log(questionCount);
 
-function handleAddOptionClick(questionBoxId) {
-  Array.from(addOptionIcons).forEach((addOptIcon) => {
-    addOptIcon.addEventListener("click", () => {
-      const questionBox = document.getElementById(questionBoxId);
-      let radioInput = document.createElement("input");
+  const li = document.createElement("li");
+  const div = document.createElement("div");
+  div.classList.add("question-box");
 
-      updateoptionNum();
+  const questionInput = document.createElement("input");
+  questionInput.type = "text";
+  questionInput.classList.add("question-statement");
+  questionInput.name = `questions[${questionCount}][statement]`;
+  questionInput.value = "Write your question statement here";
 
-      radioInput.setAttribute("id", "q1-opt" + optionNum);
-      radioInput.setAttribute("class", "question-option");
-      radioInput.setAttribute("name", "q1-option");
-      radioInput.setAttribute("type", "radio");
+  const optionList = document.createElement("ol");
+  optionList.classList.add("ordered-list-option");
 
-      let labelRadioInput = document.createElement("label");
-      labelRadioInput.setAttribute("contenteditable", "true");
-      labelRadioInput.setAttribute("for", "q1-opt" + optionNum);
-      labelRadioInput.innerText = "Write your option here";
+  const optionListItem = document.createElement("li");
+  const optionInput = document.createElement("input");
+  optionInput.type = "text";
+  optionInput.classList.add("question-option");
+  optionInput.name = `questions[${questionCount}][options][]`;
+  optionInput.value = "Write your option here";
 
-      questionBox.insertBefore(document.createElement("br"), addOptIcon);
-      questionBox.insertBefore(radioInput, addOptIcon);
-      questionBox.insertBefore(labelRadioInput, addOptIcon);
-    });
+  optionListItem.appendChild(optionInput);
+  optionList.appendChild(optionListItem);
+
+  // Add functionality to add new options for this question
+  const addOptionButton = document.createElement("span");
+  addOptionButton.classList.add("add-option-icon");
+  addOptionButton.textContent = "+";
+  addOptionButton.addEventListener("click", function () {
+    const newOptionListItem = document.createElement("li");
+    const newOptionInput = document.createElement("input");
+    newOptionInput.type = "text";
+    newOptionInput.classList.add("question-option");
+    newOptionInput.name = `questions[${questionCount}][options][]`;
+    newOptionInput.value = "Write your option here";
+
+    newOptionListItem.appendChild(newOptionInput);
+    optionList.appendChild(newOptionListItem);
   });
-}
 
-/* <li>
-<div id="q1-box" class="question-box">
-<!-- assign name attribute dynamically -->
-<input
-  class="question-statement"
-  type="text"
-  name="q1-statement"
-  value="Write your question statement here"
-/>
+  div.appendChild(questionInput);
+  div.appendChild(optionList);
+  div.appendChild(addOptionButton);
 
-<!-- assign id attribute dynamically -->
-<!-- assign name attribute dynamically -->
-<ol id="ordered-list-option">
-  <li>
-    <input
-      id="q1-opt1"
-      class="question-option"
-      type="radio"
-      name="q1-option"
-      value=""
-    />
-
-    <!-- assign for attribute dynamically -->
-    <label for="q1-opt1" contenteditable="true"
-      >Write your option here</label
-    >
-  </li>
-   */
-addQuestionIcon.addEventListener("click", () => {
-  let listItem = document.createElement("li");
-  let questionBox = document.createElement("div");
-
-  updateQuestionNum();
-  let questionBoxId = "q" + questionNum + "-box";
-  questionBox.setAttribute("id", questionBoxId);
-  questionBox.setAttribute("class", "question-box");
-
-  let questionStatement = document.createElement("input");
-  questionStatement.setAttribute("class", "question-statement");
-  questionStatement.setAttribute("name", "q" + questionNum + "statement");
-  questionStatement.setAttribute("type", "text");
-  questionStatement.value = "Write your question statement here";
-
-  let radioInput = document.createElement("input");
-  radioInput.setAttribute("id", "q" + questionNum + "-opt" + optionNum);
-  radioInput.setAttribute("class", "question-option");
-  radioInput.setAttribute("name", "q" + questionNum + "-option");
-  radioInput.setAttribute("type", "radio");
-
-  let labelRadioInput = document.createElement("label");
-  labelRadioInput.setAttribute("contenteditable", "true");
-  labelRadioInput.setAttribute("for", "q" + questionNum + "-opt" + optionNum);
-  labelRadioInput.innerText = "Write your option here";
-
-  let addOptIcon = document.createElement("span");
-  addOptIcon.classList.add("add-option-icon");
-  addOptIcon.innerText = "+";
-
-  questionBox.appendChild(questionStatement);
-  questionBox.appendChild(radioInput);
-  questionBox.appendChild(labelRadioInput);
-  questionBox.appendChild(addOptIcon);
-  listItem.appendChild(questionBox);
-  orderedListQuestion.appendChild(listItem);
-
-  handleAddOptionClick(questionBoxId);
-});
-
-function updateQuestionNum() {
-  questionNum = orderedListQuestion.childElementCount + 1;
-}
-
-function updateoptionNum() {
-  optionNum = orderedListOption.childElementCount + 1;
-}
-
-btnPost.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  let formData = new FormData(document.getElementById("create-quiz-form"));
-
-  fetch("./db/process_create.php", {
-    method: "POST",
-    body: formData,
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      if (data === "success") {
-        alert("Quiz Posted Successful!");
-        window.location.href = "./page/explore.php";
-      } else {
-        alert("Quiz Post Failed!");
-        document.getElementById("sign_in-error-message").innerText = data;
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  li.appendChild(div);
+  questionList.appendChild(li);
 });
