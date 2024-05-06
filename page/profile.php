@@ -106,7 +106,6 @@ $progress_quiz_table->execute([$username]);
             <br>
         </div>
         <div>
-
             <h2>Solved Quizzes</h2>
             <ol>
                 <?php while ($row = $progress_quiz_table->fetch(PDO::FETCH_OBJ)) : ?>
@@ -119,9 +118,9 @@ $progress_quiz_table->execute([$username]);
                         <small>Result: <?= $row->result ?></small>
 
                         <?php if ($row->is_favourite == "1") : ?>
-                            <img style="width:12px" src="../img/heart_filled_icon.png" alt="filled heart icon">
+                            <img src="../img/heart_filled_icon.png" alt="filled heart icon">
                         <?php else : ?>
-                            <img style="width:12px" src="../img/heart_icon.png" alt="heart icon">
+                            <img src="../img/heart_icon.png" alt="heart icon">
                         <?php endif; ?>
                     </li>
                 <?php endwhile; ?>

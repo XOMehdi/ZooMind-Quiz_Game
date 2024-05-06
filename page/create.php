@@ -34,12 +34,10 @@
       <ol id="ordered-list-question">
         <li>
           <div class="question-box">
-            <input class="question-statement" type="text" name="questions[0][statement]"
-              value="Write your question statement here" />
+            <input class="question-statement" type="text" name="questions[0][statement]" value="Write your question statement here" />
             <ol id="ordered-list-option" class="ordered-list-option">
               <li>
-                <input class="question-option" type="text" name="questions[0][options][]"
-                  value="Write your option here" />
+                <input class="question-option" type="text" name="questions[0][options][]" value="Write your option here" />
               </li>
               <span id="add-option-icon" class="add-option-icon">+</span>
             </ol>
@@ -49,7 +47,7 @@
         <br>
       </ol>
 
-      <img id="add-question-icon" src="../img/add_ques_icon.png" alt="add new question image icon" />
+      <img id="add-question-icon" src="../img/add_icon.png" alt="add new question image icon" />
       <input id="btn-post" type="submit" name="btn-post" value="Post" />
     </form>
   </main>

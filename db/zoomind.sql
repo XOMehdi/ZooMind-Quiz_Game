@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 06, 2024 at 03:45 AM
+-- Generation Time: May 07, 2024 at 02:58 AM
 -- Server version: 8.0.36-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.14
 
@@ -48,6 +48,42 @@ CREATE TABLE `progress` (
   `is_favourite` tinyint(1) NOT NULL DEFAULT '0'
 );
 
+--
+-- Triggers `progress`
+--
+DELIMITER $$
+CREATE TRIGGER `increment_attempt_on_insert` AFTER INSERT ON `progress` FOR EACH ROW BEGIN
+    UPDATE quiz
+    SET count_attempt = count_attempt + 1;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `increment_passed_on_pass` AFTER INSERT ON `progress` FOR EACH ROW BEGIN
+    IF NEW.result = 'pass' THEN
+        UPDATE quiz
+        SET count_passed = count_passed + 1;
+    END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `update_high_score` AFTER INSERT ON `progress` FOR EACH ROW BEGIN
+    DECLARE max_marks INT;
+
+    -- Calculate the maximum marks obtained for the quiz
+    SELECT MAX(marks) INTO max_marks
+    FROM progress
+    WHERE quiz_number = NEW.quiz_number;
+
+    -- Update the high_score column in the quiz table
+    UPDATE quiz
+    SET high_score = max_marks
+    WHERE number = NEW.quiz_number;
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -72,8 +108,9 @@ CREATE TABLE `quiz` (
   `description` text,
   `category` varchar(255) NOT NULL,
   `difficulty` enum('1','2','3','4','5') NOT NULL,
-  `count_attempt` int DEFAULT NULL,
-  `count_passed` int DEFAULT NULL,
+  `count_attempt` int DEFAULT '0',
+  `count_passed` int DEFAULT '0',
+  `high_score` int DEFAULT '0',
   `upload_by` varchar(255) NOT NULL,
   `upload_on` date NOT NULL
 );
@@ -96,7 +133,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `first_name`, `last_name`, `password`) VALUES
-('abc', 'Muhammad', '', 'abc');
+('abc', 'XO', 'Mehdi', '123');
 
 --
 -- Indexes for dumped tables
@@ -145,13 +182,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `options`
 --
 ALTER TABLE `options`
-  MODIFY `number` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `number` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `number` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `number` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
