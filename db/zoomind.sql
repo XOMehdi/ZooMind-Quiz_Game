@@ -32,7 +32,7 @@ CREATE TABLE `options` (
   `title` varchar(255) NOT NULL,
   `is_answer` tinyint(1) DEFAULT NULL,
   `question_id` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 -- --------------------------------------------------------
 
@@ -46,7 +46,7 @@ CREATE TABLE `progress` (
   `marks` int NOT NULL,
   `result` enum('pass','fail') NOT NULL,
   `is_favourite` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 -- --------------------------------------------------------
 
@@ -58,7 +58,7 @@ CREATE TABLE `question` (
   `id` varchar(255) NOT NULL,
   `statement` text NOT NULL,
   `quiz_number` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 -- --------------------------------------------------------
 
@@ -76,7 +76,7 @@ CREATE TABLE `quiz` (
   `count_passed` int DEFAULT NULL,
   `upload_by` varchar(255) NOT NULL,
   `upload_on` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 -- --------------------------------------------------------
 
@@ -89,7 +89,7 @@ CREATE TABLE `user` (
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `user`
