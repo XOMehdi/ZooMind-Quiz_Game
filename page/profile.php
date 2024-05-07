@@ -67,16 +67,19 @@ $progress_quiz_table->execute([$username]);
             <form id="edit-profile-form" action="../db/process_profile.php" method="post">
                 <h2>Personal Information</h2>
                 <label for="first_name">First Name:</label>
-                <input id="first_name" class="editable-input" type="text" name="first_name" readonly value="<?= $row_user->first_name ?>" />
+                <input id="first_name" class="editable-input" type="text" name="first_name" readonly
+                    value="<?= $row_user->first_name ?>" />
 
                 <label for="last_name">Last Name:</label>
-                <input id="last_name" class="editable-input" type="text" name="last_name" readonly value="<?= $row_user->last_name ?>" />
+                <input id="last_name" class="editable-input" type="text" name="last_name" readonly
+                    value="<?= $row_user->last_name ?>" />
 
                 <label for="username">Username:</label>
                 <input id="username" type="text" name="username" readonly value="<?= $row_user->username ?>" />
 
                 <label for="password">Password:</label>
-                <input id="password" class="editable-input" type="text" name="password" readonly value="<?= $row_user->password ?>" />
+                <input id="password" class="editable-input" type="text" name="password" readonly
+                    value="<?= $row_user->password ?>" />
 
                 <input id="btn-edit" type="button" value="Edit">
                 <input type="submit" value="Save" name="btn-save">
@@ -109,20 +112,20 @@ $progress_quiz_table->execute([$username]);
             <h2>Solved Quizzes</h2>
             <ol>
                 <?php while ($row = $progress_quiz_table->fetch(PDO::FETCH_OBJ)) : ?>
-                    <li>
-                        <h3><?= $row->title ?></h3>
-                        <small>Category: <?= $row->category ?></small>
-                        <small>Difficulty: <?= $row->difficulty ?></small>
-                        <p><?= $row->description ?></p>
-                        <small>Marks: <?= $row->marks ?></small>
-                        <small>Result: <?= $row->result ?></small>
+                <li>
+                    <h3><?= $row->title ?></h3>
+                    <small>Category: <?= $row->category ?></small>
+                    <small>Difficulty: <?= $row->difficulty ?></small>
+                    <p><?= $row->description ?></p>
+                    <small>Marks: <?= $row->marks ?></small>
+                    <small>Result: <?= $row->result ?></small>
 
-                        <?php if ($row->is_favourite == "1") : ?>
-                            <img src="../img/heart_filled_icon.png" alt="filled heart icon">
-                        <?php else : ?>
-                            <img src="../img/heart_icon.png" alt="heart icon">
-                        <?php endif; ?>
-                    </li>
+                    <?php if ($row->is_favourite == "1") : ?>
+                    <img src="../img/heart_filled_icon.png" alt="filled heart icon">
+                    <?php else : ?>
+                    <img src="../img/heart_icon.png" alt="heart icon">
+                    <?php endif; ?>
+                </li>
                 <?php endwhile; ?>
             </ol>
         </div>
