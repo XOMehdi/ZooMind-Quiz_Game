@@ -1,25 +1,10 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1deb5ubuntu1
--- https://www.phpmyadmin.net/
---
--- Host: localhost:3306
--- Generation Time: May 07, 2024 at 02:58 AM
--- Server version: 8.0.36-0ubuntu0.22.04.1
--- PHP Version: 8.1.2-1ubuntu2.14
+-- =============================================================================================================
+--                                          DROP QUERIES
+-- =============================================================================================================
+DROP DATABASE IF EXISTS zoomind;
+CREATE DATABASE zoomind;
+USE zoomind;
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `zoomind`
---
 
 -- --------------------------------------------------------
 
@@ -43,7 +28,9 @@ CREATE TABLE `options` (
 CREATE TABLE `progress` (
   `username` varchar(255) NOT NULL,
   `quiz_number` int NOT NULL,
-  `marks` int NOT NULL,
+  `attempt_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `obtained_marks` int NOT NULL DEFAULT '0',
+  `total_marks` int NOT NULL DEFAULT '0',
   `result` enum('pass','fail') NOT NULL,
   `is_favourite` tinyint(1) NOT NULL DEFAULT '0'
 );
@@ -71,12 +58,10 @@ DELIMITER $$
 CREATE TRIGGER `update_high_score` AFTER INSERT ON `progress` FOR EACH ROW BEGIN
     DECLARE max_marks INT;
 
-    -- Calculate the maximum marks obtained for the quiz
-    SELECT MAX(marks) INTO max_marks
+    SELECT MAX(obtained_marks) INTO max_marks
     FROM progress
     WHERE quiz_number = NEW.quiz_number;
 
-    -- Update the high_score column in the quiz table
     UPDATE quiz
     SET high_score = max_marks
     WHERE number = NEW.quiz_number;
@@ -129,13 +114,6 @@ CREATE TABLE `user` (
 );
 
 --
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`username`, `first_name`, `last_name`, `password`) VALUES
-('abc', 'XO', 'Mehdi', '123');
-
---
 -- Indexes for dumped tables
 --
 
@@ -150,7 +128,7 @@ ALTER TABLE `options`
 -- Indexes for table `progress`
 --
 ALTER TABLE `progress`
-  ADD PRIMARY KEY (`username`,`quiz_number`),
+  ADD PRIMARY KEY (`username`,`quiz_number`,`attempt_on`),
   ADD KEY `fk_progress_quiz_number` (`quiz_number`);
 
 --
@@ -182,13 +160,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `options`
 --
 ALTER TABLE `options`
-  MODIFY `number` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `number` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `number` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `number` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Constraints for dumped tables
@@ -219,7 +197,3 @@ ALTER TABLE `question`
 ALTER TABLE `quiz`
   ADD CONSTRAINT `fk_upload_by_username` FOREIGN KEY (`upload_by`) REFERENCES `user` (`username`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

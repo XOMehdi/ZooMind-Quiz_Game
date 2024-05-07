@@ -38,7 +38,7 @@ signInUsernameInput.addEventListener("keypress", (e) => {
 
     const forwardIcon = document.getElementById("forward-icon");
     forwardIcon.style.bottom = "14px";
-    forwardIcon.style.right = "10px";
+    forwardIcon.style.right = "85px";
   }
 });
 

@@ -1,11 +1,9 @@
 <?php
 
-// include('../secure.php');
 include_once('../db/connection.php');
 session_start();
 
-// $username = $_SESSION['username']
-
+$user_state = (isset($_SESSION['username'])) ? "signed_in" : "signed_out";
 $sql = "SELECT * FROM quiz";
 
 $quiz_table = $conn->query($sql);
@@ -35,7 +33,12 @@ $quiz_table = $conn->query($sql);
                 <li><a href="./profile.php">Profile</a></li>
 
                 <!-- change text according to user log in state -->
-                <li><a href="../sign_out.php">Sign out</a></li>
+                <?php if ($user_state === "signed_in") {
+                    echo "<li><a href='../sign_out.php'>Sign out</a></li>";
+                } else {
+                    echo "<li><a href='../index.html'>Sign up / Sign in</a></li>";
+                } ?>
+
             </ul>
         </nav>
     </header>
@@ -50,25 +53,26 @@ $quiz_table = $conn->query($sql);
             <option value="oldest">Oldest</option>
         </select>
         <ol>
-            <?php while ($row = $quiz_table->fetch(PDO::FETCH_OBJ)) : ?>
-            <li>
-                <div class="quiz-card">
-                    <h3><?= $row->title ?></h3>
-                    <small>Category: <?= $row->category ?></small>
-                    <small>Difficulty: <?= $row->difficulty ?></small>
-                    <p><?= $row->description ?></p>
-                    <small>Pass/Fail: <?= $row->count_passed . "/" . $row->count_attempt - $row->count_passed ?></small>
-                    <small>High Score: <?= $row->high_score ?></small>
-                    <small>Uploaded By: <?= $row->upload_by ?></small>
-                    <small>Uploaded On: <?= $row->upload_on ?></small>
-                    <img class="heart-icon" src="../img/heart_icon.png" alt="heart icon">
+            <form action="./play.php" method="get">
+                <?php while ($row = $quiz_table->fetch(PDO::FETCH_OBJ)) : ?>
+                    <li>
+                        <div class="quiz-card">
+                            <h3><?= $row->title ?></h3>
+                            <small>Category: <?= $row->category ?></small>
+                            <small>Difficulty: <?= $row->difficulty ?></small>
+                            <p><?= $row->description ?></p>
+                            <small>Pass/Fail: <?= $row->count_passed . "/" . $row->count_attempt - $row->count_passed ?></small>
+                            <small>High Score: <?= $row->high_score ?></small>
+                            <small>Uploaded By: <?= $row->upload_by ?></small>
+                            <small>Uploaded On: <?= $row->upload_on ?></small>
+                            <img id="heart-icon" src="../img/heart_icon.png" alt="heart icon">
 
-                    <form action="./play.php" method="get">
-                        <a class="play-link" href="./play.php?quiz-number=<?= $row->number ?>">Play</a>
-                    </form>
-                </div>
-            </li>
-            <?php endwhile; ?>
+                            <input id="is-favourite" type="hidden" name="is-favourite" value="0">
+                            <a class="play-link" href="./play.php?quiz-number=<?= $row->number ?>&is-favourite=0">Play</a>
+                        </div>
+                    </li>
+                <?php endwhile; ?>
+            </form>
         </ol>
     </main>
     <footer></footer>

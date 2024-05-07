@@ -1,11 +1,12 @@
 <?php
 
-// include('../secure.php');
+include('../secure.php');
 include_once('../db/connection.php');
 session_start();
 
-// if (isset($_GET['quiz-number'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
+    $is_favourite = $_GET['is-favourite'];
 
     $quiz_number = $_GET['quiz-number'];
 
@@ -27,57 +28,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="./css/play.css" />
+    <link rel="stylesheet" type="text/css" href="../css/play.css" />
+    <script src="../js/play.js" defer></script>
     <title>ZooMind - Play</title>
 </head>
 
 <body>
     <header></header>
     <main>
-        <h3><?= $row->quiz_title ?></h3>
-        <small>Category: <?= $row->category ?></small>
-        <small>Difficulty: <?= $row->difficulty ?></small>
-        <p><?= $row->description ?></p>
+        <form action="../db/process_play.php" method="post">
+            <input type="hidden" name="quiz-number" value="<?= $row->number ?>">
+            <h3><?= $row->quiz_title ?></h3>
+            <small>Category: <?= $row->category ?></small>
+            <small>Difficulty: <?= $row->difficulty ?></small>
+            <p><?= $row->description ?></p>
+            <div>
+                <small>Add to Favourites</small>
+                <img id="heart-icon" src="../img/heart_icon.png" alt="heart icon">
+                <input id="is-favourite" type="hidden" name="is-favourite" value="<?= $is_favourite ?>">
+                </small>
 
-        <?php while ($row = $question_table->fetch(PDO::FETCH_OBJ)) : ?>
-        <ol>
-            <li>
-                <p><?= $row->statement ?></p>
-                <ol>
-                    <?php
-                        $sql = "SELECT *, title AS option_title FROM options WHERE question_id = $row->id";
-                        $option_table = $conn->query($sql);
+                <?php while ($row = $question_table->fetch(PDO::FETCH_OBJ)) : ?>
+                    <ol>
+                        <li>
+                            <input type="hidden" name="question-ids[]" value="<?= $row->id ?>">
+                            <p><?= $row->statement ?></p>
+                            <ol>
+                                <?php
+                                $sql = "SELECT *, title AS option_title FROM options WHERE question_id = ? ORDER BY number ASC";
+                                $option_table = $conn->prepare($sql);
+                                $option_table->execute([$row->id]);
 
-                        while ($row = $option_table->fetch(PDO::FETCH_OBJ)) {
-                            echo "<li>$row->option_title</li>";
-                        } ?>
-                </ol>
-                <input type="number" name="selected_options[]" placeholder="Enter your selected option number">
-            </li>
-        </ol>
-        <?php endwhile; ?>
+                                while ($row = $option_table->fetch(PDO::FETCH_OBJ)) {
+                                    echo "<li>$row->option_title</li>";
+                                } ?>
+                            </ol>
+                            <input type="number" name="selected-options[]" placeholder="Enter your selected option number">
+                        </li>
+                    </ol>
+                <?php endwhile; ?>
 
-        <!-- <h2>Question 1</h2>
-            <p>What is the largest domestic cat breed?</p>
-            <ul>
-                <li>
-                    <input id="siamese" name="q1-opts" type="radio" value="Siamese" />
-                    <label for="siamese"><i>Siamese</i></label>
-                </li>
-                <li>
-                    <input id="maine_coon" name="q1-opts" type="radio" value="Maine Coon" />
-                    <label for="maine_coon"><i>Maine Coon</i></label>
-                </li>
-                <li>
-                    <input id="bengal" name="q1-opts" type="radio" value="Bengal" />
-                    <label for="bengal"><i>Bengal</i></label>
-                </li>
-                <li>
-                    <input id="persian" name="q1-opts" type="radio" value="Persian" />
-                    <label for="persian"><i>Persian</i></label>
-                </li>
-            </ul> 
-        -->
+                <input type="submit" name="btn-submit-quiz" value="Submit">
+        </form>
     </main>
     <footer></footer>
 </body>

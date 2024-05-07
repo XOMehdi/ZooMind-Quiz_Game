@@ -1,6 +1,6 @@
 <?php
 
-// include('../secure.php');
+include('../secure.php');
 include_once('./connection.php');
 session_start();
 
@@ -12,14 +12,9 @@ if (isset($_POST['btn-post'])) {
     $difficulty = $_POST["difficulty"];
     $questions = $_POST["questions"];
 
+    $upload_by = $_SESSION["username"];
 
-    // $upload_by = $_SESSION["username"];
-    $upload_by = "abc";
     $upload_on = date("y/m/d");
-
-
-
-    print_r($questions);
 
 
     $sql = "INSERT INTO quiz (title, description, category, difficulty, count_attempt, count_passed, upload_by, upload_on) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -31,12 +26,7 @@ if (isset($_POST['btn-post'])) {
     $row = $result->fetch(PDO::FETCH_OBJ);
 
 
-
-
-    // Display each question and its options
     foreach ($questions as $index => $question) {
-
-
 
         $id = "quiz" . $row->number . "_q" . ($index + 1);
         $statement = $question["statement"];
@@ -46,39 +36,17 @@ if (isset($_POST['btn-post'])) {
         $query = $conn->prepare($sql);
         $query->execute([$id, $statement, $quiz_number]);
 
-
-
-
-
-
-
-
-
-
-        echo "<hr>";
-        echo "Question " . ($index + 1) . ": " . $question["statement"] . "<br>";
-
-        echo "Options:<br>";
-
-
-
-
         foreach ($question["options"] as $index => $option) {
-
 
             $is_answer = ($index + 1 == $question["correct_option"]) ? "1" : "0";
 
             $sql = "INSERT INTO options (title, is_answer, question_id) VALUES (?, ?, ?)";
             $query = $conn->prepare($sql);
             $query->execute([$option, $is_answer, $id]);
-
-
-
-
-            echo ($index + 1) . "- " . $option . "<br>";
         }
-        echo $question["correct_option"] . "<br>";
     }
+
+    header("Location: ../page/explore.php");
 } else {
     echo "Form not submitted!";
 }

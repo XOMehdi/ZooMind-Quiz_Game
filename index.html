@@ -1,164 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="./css/index.css" />
-    <script src="./js/index.js" defer></script>
-    <title>ZooMind - Welcome</title>
-  </head>
-  <body>
-    <header></header>
-    <main>
-      <img id="site-logo" src="./img/site_logo.png" alt="site logo" />
-      <h1>Welcome to ZooMind</h1>
-      <p>Test your knowledge about animals</p>
 
-      <div id="options-box">
-        <a href="./page/explore.php"><h2>Play</h2></a>
-        <a href="./page/create.php"><h2>Create</h2></a>
-        <a href="./page/about.php"><h2>About</h2></a>
-        <a class="sign_up-sign_in" href="#sign_up-box">Sign up</a>
-        <a class="sign_up-sign_in" href="#sign_in-box">Sign in</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="./css/index.css" />
+  <script src="./js/index.js" defer></script>
+  <title>ZooMind - Welcome</title>
+</head>
+
+<body>
+  <header></header>
+  <main>
+    <img id="site-logo" src="./img/site_logo.png" alt="site logo" />
+    <h1>Welcome to ZooMind</h1>
+    <p>Test your knowledge about animals</p>
+
+    <div id="options-box">
+      <a href="./page/explore.php">
+        <h2>Play</h2>
+      </a>
+      <a href="./page/create.php">
+        <h2>Create</h2>
+      </a>
+      <a href="./page/about.php">
+        <h2>About</h2>
+      </a>
+      <a class="sign_up-sign_in" href="#sign_up-box">Sign up</a>
+      <a class="sign_up-sign_in" href="#sign_in-box">Sign in</a>
+    </div>
+
+    <!-- ======================= -->
+    <!-- ======================= -->
+    <!-- ======================= -->
+
+    <div id="sign_up-box">
+      <div id="heading-box">
+        <img src="./img/site_logo.png" alt="site logo" />
+        <h1>Create Your Account</h1>
       </div>
-
-      <!-- ======================= -->
-      <!-- ======================= -->
-      <!-- ======================= -->
-
-      <div id="sign_up-box">
-        <div id="heading-box">
-          <img src="./img/site_logo.png" alt="site logo" />
-          <h1>Create Your Account</h1>
-        </div>
-        <form action="./db/process_sign_up_sign_in.php" method="post">
-          <div id="form-box">
-            <p>
-              Already have an Account?
-              <a id="sign_in-link" href="#">Sign In ></a>
-            </p>
-            <div>
-              <div class="input-box">
-                <input
-                  id="first_name"
-                  class="input-name"
-                  name="first_name"
-                  type="text"
-                />
-                <label class="placeholder-label" for="first_name"
-                  >First name</label
-                >
-              </div>
-              <div class="input-box">
-                <input
-                  id="last_name"
-                  class="input-name"
-                  name="last_name"
-                  type="text"
-                />
-                <label class="placeholder-label" for="last_name"
-                  >Last name</label
-                >
-              </div>
+      <form action="./db/process_sign_up_sign_in.php" method="post">
+        <div id="form-box">
+          <p>
+            Already have an Account?
+            <a id="sign_in-link" href="#">Sign In ></a>
+          </p>
+          <div>
+            <div class="input-box">
+              <input id="first_name" class="input-name" name="first_name" type="text" />
+              <label class="placeholder-label" for="first_name">First name</label>
             </div>
             <div class="input-box">
-              <input id="username" name="username" type="text" required />
-              <label class="placeholder-label" for="username">Username</label>
-            </div>
-
-            <div class="input-box">
-              <input id="password" name="password" type="password" required />
-              <label class="placeholder-label" for="password">Password</label>
-            </div>
-
-            <div class="input-box">
-              <input
-                id="confirm_password"
-                name="confirm_password"
-                type="password"
-                required
-              />
-              <label class="placeholder-label" for="confirm_password"
-                >Confirm password</label
-              >
+              <input id="last_name" class="input-name" name="last_name" type="text" />
+              <label class="placeholder-label" for="last_name">Last name</label>
             </div>
           </div>
-          <div id="password-strength"></div>
-          <div class="error-message" id="error-message"></div>
-          <div id="btn-box">
-            <input id="btn-cancel" class="btn" type="button" value="Cancel" />
-            <input
-              id="btn-sign_up"
-              class="btn"
-              name="btn-sign_up"
-              type="submit"
-              value="Sign up"
-            />
+          <div class="input-box">
+            <input id="username" name="username" type="text" required />
+            <label class="placeholder-label" for="username">Username</label>
+          </div>
+
+          <div class="input-box">
+            <input id="password" name="password" type="password" required />
+            <label class="placeholder-label" for="password">Password</label>
+          </div>
+
+          <div class="input-box">
+            <input id="confirm_password" name="confirm_password" type="password" required />
+            <label class="placeholder-label" for="confirm_password">Confirm password</label>
+          </div>
+        </div>
+        <div id="password-strength"></div>
+        <div class="error-message" id="error-message"></div>
+        <div id="btn-box">
+          <input id="btn-cancel" class="btn" type="button" value="Cancel" />
+          <input id="btn-sign_up" class="btn" name="btn-sign_up" type="submit" value="Sign up" />
+        </div>
+      </form>
+    </div>
+
+    <!-- ======================= -->
+    <!-- ======================= -->
+    <!-- ======================= -->
+
+    <div id="sign_in-box">
+      <div id="site_logo-box">
+        <img src="./img/site_logo.png" alt="site logo" />
+      </div>
+      <div>
+        <h1>Sign in with Your Account</h1>
+      </div>
+      <div>
+        <form id="sign_in-form" action="./db/process_sign_up_sign_in.php" method="post">
+          <div id="sign_in-form-box">
+            <div id="main-input-box">
+              <div class="input-box">
+                <input id="sign_in-username" name="sign_in-username" type="text" required />
+                <label class="placeholder-label" for="sign_in-username">Username</label>
+              </div>
+              <div id="input-box-password" class="input-box">
+                <input id="sign_in-password" name="sign_in-password" type="password" required />
+                <label class="placeholder-label" for="sign_in-password">Password</label>
+              </div>
+              <img id="forward-icon" src="./img/forward_icon.png" alt="proceed forward icon" />
+            </div>
+            <div class="error-message" id="sign_in-error-message"></div>
+            <div id="checkbox-box">
+              <input id="signed_in-checkbox" type="checkbox" />
+              <label for="signed_in-checkbox">Keep me signed in</label>
+            </div>
+            <div id="forgot-box">
+              <a href="#">Forgot password?</a>
+              <a id="sign_up-link" href="#">Create Account</a>
+            </div>
           </div>
         </form>
       </div>
+    </div>
+  </main>
+  <footer></footer>
+</body>
 
-      <!-- ======================= -->
-      <!-- ======================= -->
-      <!-- ======================= -->
-
-      <div id="sign_in-box">
-        <div id="site_logo-box">
-          <img src="./img/site_logo.png" alt="site logo" />
-        </div>
-        <div>
-          <h1>Sign in with Your Account</h1>
-        </div>
-        <div>
-          <form
-            id="sign_in-form"
-            action="./db/process_sign_up_sign_in.php"
-            method="post"
-          >
-            <div id="sign_in-form-box">
-              <div id="main-input-box">
-                <div class="input-box">
-                  <input
-                    id="sign_in-username"
-                    name="sign_in-username"
-                    type="text"
-                    required
-                  />
-                  <label class="placeholder-label" for="sign_in-username"
-                    >Username</label
-                  >
-                </div>
-                <div id="input-box-password" class="input-box">
-                  <input
-                    id="sign_in-password"
-                    name="sign_in-password"
-                    type="password"
-                    required
-                  />
-                  <label class="placeholder-label" for="sign_in-password"
-                    >Password</label
-                  >
-                </div>
-                <img
-                  id="forward-icon"
-                  src="./img/forward_icon.png"
-                  alt="proceed forward icon"
-                />
-              </div>
-              <div class="error-message" id="sign_in-error-message"></div>
-              <div id="checkbox-box">
-                <input id="signed_in-checkbox" type="checkbox" />
-                <label for="signed_in-checkbox">Keep me signed in</label>
-              </div>
-              <div id="forgot-box">
-                <a href="#">Forgot password?</a>
-                <a id="sign_up-link" href="#">Create Account</a>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </main>
-    <footer></footer>
-  </body>
 </html>
