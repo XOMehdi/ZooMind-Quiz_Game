@@ -41,7 +41,7 @@ include('../secure.php');
             <input class="question-statement" type="text" name="questions[0][statement]" value="Write your question statement here" />
             <ol id="ordered-list-option" class="ordered-list-option">
               <li>
-                <input class="question-option" type="text" name="questions[0][options][]" value="Write your option here" />
+                <input class="question-option" type="text" name="questions[0][options][]" value="Option" />
               </li>
               <span id="add-option-icon" class="add-option-icon">+</span>
             </ol>

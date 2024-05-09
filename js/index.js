@@ -1,3 +1,5 @@
+const showSignUpLink = document.getElementById("show-sign_up-link");
+const showSignInLink = document.getElementById("show-sign_in-link");
 const signInLink = document.getElementById("sign_in-link");
 const signUpLink = document.getElementById("sign_up-link");
 const signUpBox = document.getElementById("sign_up-box");
@@ -15,6 +17,14 @@ const inputFields = document.querySelectorAll(
   'input[type="text"], input[type="password"]'
 );
 
+showSignUpLink.onclick = () => {
+  signUpBox.style.display = "flex";
+};
+
+showSignInLink.onclick = () => {
+  signInBox.style.display = "flex";
+};
+
 Array.from(inputFields).forEach((inputField) => {
   inputField.addEventListener("keyup", () => {
     if (inputField.value.length > 0) {
@@ -25,12 +35,17 @@ Array.from(inputFields).forEach((inputField) => {
   });
 });
 
-btnCancel.addEventListener("click", animateFormUp);
+btnCancel.onclick = () => {
+  signUpBox.style.display = "none";
+};
+
 btnSignUp.addEventListener("submit", signUp);
 
 signInUsernameInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
+
+    signInPasswordInput.focus();
 
     signInUsernameInput.style.borderRadius = "15px 15px 0 0";
     const inputBoxPassword = document.getElementById("input-box-password");

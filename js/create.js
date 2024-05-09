@@ -10,7 +10,7 @@ addOptionIcon.addEventListener("click", () => {
   newOptionInput.classList.add("question-option");
 
   newOptionInput.name = `questions[0][options][]`;
-  newOptionInput.value = "Write your option here";
+  newOptionInput.value = "Option";
 
   newOptionListItem.appendChild(newOptionInput);
   optionList.insertBefore(newOptionListItem, addOptionIcon);
@@ -44,7 +44,7 @@ addQuestionIcon.addEventListener("click", function () {
   optionInput.type = "text";
   optionInput.classList.add("question-option");
   optionInput.name = `questions[${questionCount}][options][]`;
-  optionInput.value = "Write your option here";
+  optionInput.value = "Option";
 
   optionListItem.appendChild(optionInput);
   optionList.appendChild(optionListItem);
@@ -58,7 +58,7 @@ addQuestionIcon.addEventListener("click", function () {
     newOptionInput.type = "text";
     newOptionInput.classList.add("question-option");
     newOptionInput.name = `questions[${questionCount}][options][]`;
-    newOptionInput.value = "Write your option here";
+    newOptionInput.value = "Option";
 
     newOptionListItem.appendChild(newOptionInput);
     optionList.appendChild(newOptionListItem);

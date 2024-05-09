@@ -2,7 +2,6 @@
 
 include('../secure.php');
 include_once('../db/connection.php');
-session_start();
 
 $username = $_SESSION['username'];
 
