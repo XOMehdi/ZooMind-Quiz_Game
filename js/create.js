@@ -73,5 +73,4 @@ addQuestionIcon.addEventListener("click", function () {
 
   li.appendChild(div);
   questionList.appendChild(li);
-  questionList.appendChild(document.createElement("br"));
 });

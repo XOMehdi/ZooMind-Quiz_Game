@@ -2,7 +2,6 @@
 
 include('../secure.php');
 include_once('./connection.php');
-session_start();
 
 if (isset($_POST['btn-post'])) {
 
@@ -15,7 +14,6 @@ if (isset($_POST['btn-post'])) {
     $upload_by = $_SESSION["username"];
 
     $upload_on = date("y/m/d");
-
 
     $sql = "INSERT INTO quiz (title, description, category, difficulty, count_attempt, count_passed, upload_by, upload_on) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $query = $conn->prepare($sql);
