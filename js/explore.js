@@ -1,6 +1,34 @@
+const searchInput = document.getElementById("search");
+const sortBySelect = document.getElementById("sort-by");
+const sortByForm = document.getElementById("sort-by-form");
+const quizList = document.getElementById("quiz-list");
 const heartIconImg = document.getElementById("heart-icon");
 const isFavouriteInput = document.getElementById("is-favourite");
 const playLink = document.querySelector(".play-link");
+
+document.addEventListener("DOMContentLoaded", () => {
+  searchInput.addEventListener("input", () => {
+    const keyword = searchInput.value.toLowerCase();
+    filterQuizzes(keyword);
+  });
+
+  function filterQuizzes(keyword) {
+    const quizzes = document.querySelectorAll(".quiz-card");
+
+    quizzes.forEach((quiz) => {
+      const quizText = quiz.innerText.toLowerCase();
+      if (quizText.includes(keyword)) {
+        quiz.style.display = "block";
+      } else {
+        quiz.style.display = "none";
+      }
+    });
+  }
+});
+
+sortBySelect.addEventListener("change", () => {
+  sortByForm.submit();
+});
 
 heartIconImg.onclick = () => {
   if (isFavouriteInput.value === "0") {

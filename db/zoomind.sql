@@ -1,12 +1,6 @@
--- =============================================================================================================
---                                          DROP QUERIES
--- =============================================================================================================
 DROP DATABASE IF EXISTS zoomind;
 CREATE DATABASE zoomind;
 USE zoomind;
-
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `options`
@@ -41,19 +35,37 @@ CREATE TABLE `progress` (
 DELIMITER $$
 CREATE TRIGGER `increment_attempt_on_insert` AFTER INSERT ON `progress` FOR EACH ROW BEGIN
     UPDATE quiz
-    SET count_attempt = count_attempt + 1;
+    SET count_attempt = count_attempt + 1
+    WHERE number = NEW.quiz_number;
 END
 $$
 DELIMITER ;
+
+
 DELIMITER $$
 CREATE TRIGGER `increment_passed_on_pass` AFTER INSERT ON `progress` FOR EACH ROW BEGIN
     IF NEW.result = 'pass' THEN
         UPDATE quiz
-        SET count_passed = count_passed + 1;
+        SET count_passed = count_passed + 1
+        WHERE number = NEW.quiz_number;
     END IF;
 END
 $$
 DELIMITER ;
+
+
+DELIMITER $$
+CREATE TRIGGER `update_count_favourite` AFTER INSERT ON `progress` FOR EACH ROW BEGIN
+    IF NEW.is_favourite = '1' THEN
+        UPDATE quiz
+        SET count_favourite = count_favourite + 1
+        WHERE number = NEW.quiz_number;
+    END IF;
+END
+$$
+DELIMITER ;
+
+
 DELIMITER $$
 CREATE TRIGGER `update_high_score` AFTER INSERT ON `progress` FOR EACH ROW BEGIN
     DECLARE max_marks INT;
@@ -95,6 +107,7 @@ CREATE TABLE `quiz` (
   `difficulty` enum('1','2','3','4','5') NOT NULL,
   `count_attempt` int DEFAULT '0',
   `count_passed` int DEFAULT '0',
+  `count_favourite` int NOT NULL DEFAULT '0',
   `high_score` int DEFAULT '0',
   `upload_by` varchar(255) NOT NULL,
   `upload_on` date NOT NULL

@@ -5,7 +5,7 @@ include_once('../db/connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-    $is_favourite = $_GET['is-favourite'];
+    $is_favourite = $_GET['is-favourite'] ?? "0";
 
     $quiz_number = $_GET['quiz-number'];
 
