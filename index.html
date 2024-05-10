@@ -43,7 +43,7 @@
         <img src="./img/site_logo.png" alt="site logo" />
         <h1>Create Your Account</h1>
       </div>
-      <form action="./db/process_sign_up_sign_in.php" method="post">
+      <form id="sign_up-form" action="./db/process_sign_up_sign_in.php" method="post">
         <div id="form-box">
           <p>
             Already have an Account?
@@ -80,6 +80,7 @@
           <input id="btn-cancel" class="btn" type="button" value="Cancel" />
           <input id="btn-sign_up" class="btn" name="btn-sign_up" type="submit" value="Sign up" />
         </div>
+        <input type="hidden" name="action" value="sign_up">
       </form>
     </div>
 
@@ -118,6 +119,7 @@
               <a id="sign_up-link" href="#">Create Account</a>
             </div>
           </div>
+          <input type="hidden" name="action" value="sign_in">
         </form>
       </div>
     </div>

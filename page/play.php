@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     $is_favourite = $_GET['is-favourite'] ?? "0";
 
-    $quiz_number = $_GET['quiz-number'];
+    $quiz_number = test_input($_GET['quiz-number']);
 
     $sql = "SELECT *, title AS quiz_title FROM quiz WHERE number = ?";
     $quiz_table = $conn->prepare($sql);

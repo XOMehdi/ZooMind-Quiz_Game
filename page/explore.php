@@ -8,7 +8,7 @@ $user_state = (isset($_SESSION['username'])) ? "signed_in" : "signed_out";
 $sort_by = "count_favourite";
 $sort_direction = "DESC";
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+if (isset($_GET['sort-by'])) {
 
     $sort_by = $_GET['sort-by'];
 

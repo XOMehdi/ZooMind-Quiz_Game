@@ -74,7 +74,7 @@ $progress_quiz_table->execute([$username]);
                 <input id="username" type="text" name="username" readonly value="<?= $row_user->username ?>" />
 
                 <label for="password">Password:</label>
-                <input id="password" class="editable-input password" type="password" name="password" readonly value="<?= $row_user->password ?>" />
+                <input id="password" class="password" type="password" name="password" readonly value="<?= $row_user->password ?>" />
 
                 <input id="btn-edit" type="button" value="Edit">
                 <input type="submit" value="Save" name="btn-save">

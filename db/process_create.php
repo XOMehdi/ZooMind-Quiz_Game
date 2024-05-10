@@ -5,13 +5,13 @@ include_once('./connection.php');
 
 if (isset($_POST['btn-post'])) {
 
-    $title = $_POST["title"];
-    $description = $_POST["description"];
-    $category = $_POST["category"];
-    $difficulty = $_POST["difficulty"];
+    $title = test_input($_POST["title"]);
+    $description = test_input($_POST["description"]);
+    $category = test_input($_POST["category"]);
+    $difficulty = test_input($_POST["difficulty"]);
     $questions = $_POST["questions"];
 
-    $upload_by = $_SESSION["username"];
+    $upload_by = test_input($_SESSION["username"]);
 
     $upload_on = date("y/m/d");
 

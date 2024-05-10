@@ -1,3 +1,4 @@
+const signUpForm = document.getElementById("sign_up-form");
 const showSignUpLink = document.getElementById("show-sign_up-link");
 const showSignInLink = document.getElementById("show-sign_in-link");
 const signInLink = document.getElementById("sign_in-link");
@@ -6,6 +7,7 @@ const signUpBox = document.getElementById("sign_up-box");
 const signInBox = document.getElementById("sign_in-box");
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
+const confirmPasswordInput = document.getElementById("confirm_password");
 const signInUsernameInput = document.getElementById("sign_in-username");
 const signInPasswordInput = document.getElementById("sign_in-password");
 const errorMessage = document.getElementById("error-message");
@@ -39,7 +41,7 @@ btnCancel.onclick = () => {
   signUpBox.style.display = "none";
 };
 
-btnSignUp.addEventListener("submit", signUp);
+signUpForm.addEventListener("submit", signUp);
 
 signInUsernameInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
@@ -80,14 +82,31 @@ function animateFormDown() {
 }
 
 function signUp(e) {
-  const username = usernameInput.value;
-  const password = passwordInput.value;
-
   errorMessage.innerText = "";
   passwordStrength.innerText = "";
 
+  e.preventDefault();
+
   if (isValidUsername(username) && isValidPassword(password)) {
-    alert("Account Created Successfully!");
+    let formData = new FormData(signUpForm);
+
+    fetch("./db/process_sign_up_sign_in.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        if (data === "success") {
+          alert("Account Created Successfully!");
+          window.location.href = "./page/explore.php";
+        } else {
+          alert("Account Creation Failed!");
+          errorMessage.innerText = data;
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   } else {
     alert("Account Creation Failed!");
   }
@@ -138,6 +157,7 @@ function isValidUsername() {
 
 function isValidPassword() {
   const password = passwordInput.value;
+  const confirmPassword = confirmPasswordInput.value;
   var hasLowercase = /[a-z]/.test(password);
   var hasUppercase = /[A-Z]/.test(password);
   var hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
@@ -157,6 +177,11 @@ function isValidPassword() {
     errorMessage.innerText =
       "Password must have at least one small letter, one capital letter, one special character, one numeric character, and be 8 to 16 characters long.";
     passwordStrength.innerText = "";
+    return false;
+  }
+
+  if (password != confirmPassword) {
+    errorMessage.innerText = "Passwords do not match";
     return false;
   }
 
