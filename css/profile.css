@@ -2,3 +2,7 @@ img {
     display: block;
     width: 12px;
 }
+
+main {
+    color: #ffffff !important;
+}

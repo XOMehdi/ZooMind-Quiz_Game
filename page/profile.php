@@ -55,9 +55,8 @@ $progress_quiz_table->execute([$username]);
     <link rel="stylesheet" type="text/css" href="../css/profile.css" />
     <script src="../js/profile.js" defer></script>
     <title>ZooMind - Profile</title>
-</head>
+    <?php include_once('../include/sidebar.php'); ?>
 
-<body>
     <header></header>
     <main>
         <h1>Profile</h1>
@@ -127,6 +126,6 @@ $progress_quiz_table->execute([$username]);
         </div>
     </main>
     <footer></footer>
-</body>
+    </body>
 
 </html>

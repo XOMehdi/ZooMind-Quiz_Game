@@ -18,6 +18,16 @@
                 <li><a href="./explore.php"><i class='bx bx-compass'></i>Explore</a></li>
                 <li><a href="./favourite.php"><i class='bx bxs-heart'></i>Favourite</a></li>
                 <li><a href="./about.php"><i class='bx bx-info-circle'></i>About</a></li>
+                <?php
+                session_start();
+
+                $user_state = (isset($_SESSION['username'])) ? "signed_in" : "signed_out";
+
+                if ($user_state === "signed_in") {
+                    echo "<li id='sign_up-in-out'><a href='../sign_out.php'><i class='bx bx-user'></i>Sign out</a></li>";
+                } else {
+                    echo "<li id='sign_up-in-out'><a href='../index.html'><i class='bx bx-user'></i>Sign up / Sign in</a></li>";
+                } ?>
             </ul>
         </div>
     </div>

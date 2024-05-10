@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../css/about.css" />
     <!-- <script src="../js/about.js" defer></script> -->
     <title>ZooMind - About</title>
-    <?php include_once('../include/sidebar.html'); ?>
+    <?php include_once('../include/sidebar.php'); ?>
 
     <section class="about">
         <div class="main">

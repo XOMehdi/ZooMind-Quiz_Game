@@ -5,6 +5,14 @@ session_start();
 
 $action = $_POST['action'];
 
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 if ($action === "sign_up") {
     $username = test_input($_POST['username']);
     $first_name = test_input($_POST['first_name']);
