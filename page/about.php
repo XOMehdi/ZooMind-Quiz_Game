@@ -9,12 +9,14 @@
     <title>ZooMind - About</title>
     <?php include_once('../include/sidebar.php'); ?>
 
+    <header>
+        <h1>About Us</h1>
+    </header>
     <section class="about">
         <div class="main">
             <img src="../img/quizlogo.png">
             <div class="about-text">
-                <h1>About Us</h1>
-                <h5>Software <span>Engineer</span></h5>
+                <h5>Unknown <span>Noobs</span></h5>
                 <h5>Mohammad Mehdi <span>&</span> Abdullah Khan</h5>
 
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis illo ullam mollitia voluptatem,

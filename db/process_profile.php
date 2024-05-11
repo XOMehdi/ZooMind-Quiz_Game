@@ -19,6 +19,7 @@ if (isset($_POST['btn-save'])) {
 
     $query->execute([$first_name, $last_name, $hashed_password, $username]);
 
+    $_SESSION['password'] = $password;
 
     header('Location: ../page/profile.php');
 }

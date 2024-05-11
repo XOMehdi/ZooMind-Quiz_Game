@@ -48,63 +48,67 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <link rel="stylesheet" type="text/css" href="../css/play.css" />
     <script src="../js/play.js" defer></script>
     <title>ZooMind - Play</title>
-</head>
+    <?php include_once('../include/sidebar.php'); ?>
 
-<body>
-    <header></header>
+    <header>
+        <h1>Play</h1>
+    </header>
     <main>
-        <form action="../db/process_play.php" method="post">
-            <input type="hidden" name="quiz-number" value="<?= $row->number ?>">
-            <input type="hidden" name="quiz-is-attempted" value="<?= $quiz_is_attempted ?>">
-            <h3><?= $row->quiz_title ?></h3>
-            <small>Category: <?= $row->category ?></small>
-            <small>Difficulty: <?= $row->difficulty ?></small>
-            <p><?= $row->description ?></p>
-            <div>
-                <small>Add to Favourites</small>
-                <img id="heart-icon" src="../img/heart_icon.png" alt="heart icon">
-                <input id="is-favourite" type="hidden" name="is-favourite" value="<?= $is_favourite ?>">
-            </div>
+        <div>
+            <form action="../db/process_play.php" method="post">
+                <input type="hidden" name="quiz-number" value="<?= $row->number ?>">
+                <input type="hidden" name="quiz-is-attempted" value="<?= $quiz_is_attempted ?>">
+                <h3><?= $row->quiz_title ?></h3>
+                <small>Category: <?= $row->category ?></small>
+                <small>Difficulty: <?= $row->difficulty ?></small>
+                <p><?= $row->description ?></p>
+                <div>
+                    <small>Add to Favourites</small>
+                    <?php if ($is_favourite == "0") : ?>
+                        <img id="heart-icon" src="../img/heart_icon.png" alt="heart icon">
+                    <?php else : ?>
+                        <img id="heart-icon" src="../img/heart_filled_icon.png" alt="heart icon">
+                    <?php endif; ?>
+                    <input id="is-favourite" type="hidden" name="is-favourite" value="<?= $is_favourite ?>">
+                </div>
 
+                <?php $index = 0;
+                while ($row = $question_table->fetch(PDO::FETCH_OBJ)) : ?>
+                    <ol>
+                        <li>
+                            <input type="hidden" name="question-ids[]" value="<?= $row->id ?>">
+                            <p><?= $row->statement ?></p>
+                            <ol>
+                                <?php
+                                $sql = "SELECT *, title AS option_title FROM options WHERE question_id = ? ORDER BY number ASC";
+                                $option_table = $conn->prepare($sql);
+                                $option_table->execute([$row->id]);
 
-            <?php $index = 0;
-            while ($row = $question_table->fetch(PDO::FETCH_OBJ)) : ?>
-                <ol>
-                    <li>
-                        <input type="hidden" name="question-ids[]" value="<?= $row->id ?>">
-                        <p><?= $row->statement ?></p>
-                        <ol>
-                            <?php
-                            $sql = "SELECT *, title AS option_title FROM options WHERE question_id = ? ORDER BY number ASC";
-                            $option_table = $conn->prepare($sql);
-                            $option_table->execute([$row->id]);
+                                while ($row = $option_table->fetch(PDO::FETCH_OBJ)) {
+                                    echo "<li>$row->option_title</li>";
+                                } ?>
+                            </ol>
 
-                            while ($row = $option_table->fetch(PDO::FETCH_OBJ)) {
-                                echo "<li>$row->option_title</li>";
-                            } ?>
-                        </ol>
-
-                        <input type="number" name="selected-options[]" placeholder="Enter your selected option number">
-                        <div>
-                            <?php
-                            if (isset($_COOKIE['is_attempt_correct'])) {
-                                $is_attempt_correct = unserialize($_COOKIE['is_attempt_correct']);
-                                if ($is_attempt_correct[$index]) {
-                                    echo 'Correct <span>&#10003;</span>';
-                                } else {
-                                    echo 'Incorrect <span>&#10007;</span>';
+                            <input type="number" name="selected-options[]" placeholder="Enter your selected option number">
+                            <div>
+                                <?php
+                                if (isset($_COOKIE['is_attempt_correct'])) {
+                                    $is_attempt_correct = unserialize($_COOKIE['is_attempt_correct']);
+                                    if ($is_attempt_correct[$index]) {
+                                        echo 'Correct <span>&#10003;</span>';
+                                    } else {
+                                        echo 'Incorrect <span>&#10007;</span>';
+                                    }
                                 }
-                            }
-                            $index += 1;
-                            ?>
-                        </div>
-                    </li>
-                </ol>
-            <?php endwhile; ?>
-
-            <input type="submit" name="btn-submit-quiz" value="Evaluate">
-        </form>
-
+                                $index += 1;
+                                ?>
+                            </div>
+                        </li>
+                    </ol>
+                <?php endwhile; ?>
+                <input type="submit" name="btn-submit-quiz" value="Evaluate">
+            </form>
+        </div>
         <output id="quiz-result">
             <?php if ($quiz_is_attempted) : ?>
                 <h3>Quiz Result</h3>
@@ -115,6 +119,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         </output>
     </main>
     <footer></footer>
-</body>
+    </body>
 
 </html>
+
+<?php
+setcookie('is_attempt_correct', '', time() - 3600, '/');
+
+unset($_COOKIE['is_attempt_correct']);

@@ -58,9 +58,10 @@ $progress_quiz_table->execute([$username]);
     <title>ZooMind - Profile</title>
     <?php include_once('../include/sidebar.php'); ?>
 
-    <header></header>
-    <main>
+    <header>
         <h1>Profile</h1>
+    </header>
+    <main>
         <div>
             <form id="edit-profile-form" action="../db/process_profile.php" method="post">
                 <h2>Personal Information</h2>
@@ -105,9 +106,9 @@ $progress_quiz_table->execute([$username]);
         </div>
         <div>
             <h2>Solved Quizzes</h2>
-            <ol>
+            <ol id="quiz-list">
                 <?php while ($row = $progress_quiz_table->fetch(PDO::FETCH_OBJ)) : ?>
-                    <li>
+                    <li class="quiz-card">
                         <h3><?= $row->title ?></h3>
                         <small>Category: <?= $row->category ?></small>
                         <small>Difficulty: <?= $row->difficulty ?></small>

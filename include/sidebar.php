@@ -14,9 +14,9 @@
             <ul>
                 <li><a href="../index.html"><i class='bx bx-home'></i>Home</a></li>
                 <li><a href="./create.php"><i class='bx bx-edit'></i>Create</a></li>
-                <li><a href="./profile.php"><i class='bx bx-user-circle'></i>Profile</a></li>
                 <li><a href="./explore.php"><i class='bx bx-compass'></i>Explore</a></li>
-                <li><a href="./favourite.php"><i class='bx bxs-heart'></i>Favourite</a></li>
+                <li><a href="./profile.php"><i class='bx bx-user-circle'></i>Profile</a></li>
+                <li><a href="./favourite.php"><i class='bx bxs-heart'></i>Favourites</a></li>
                 <li><a href="./about.php"><i class='bx bx-info-circle'></i>About</a></li>
                 <?php
                 session_start();

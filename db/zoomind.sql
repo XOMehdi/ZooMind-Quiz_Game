@@ -40,6 +40,7 @@ CREATE TRIGGER `increment_attempt_on_insert` AFTER INSERT ON `progress` FOR EACH
 END
 $$
 DELIMITER ;
+
 DELIMITER $$
 CREATE TRIGGER `increment_passed_on_pass` AFTER INSERT ON `progress` FOR EACH ROW BEGIN
     IF NEW.result = 'pass' THEN
@@ -50,6 +51,7 @@ CREATE TRIGGER `increment_passed_on_pass` AFTER INSERT ON `progress` FOR EACH RO
 END
 $$
 DELIMITER ;
+
 DELIMITER $$
 CREATE TRIGGER `update_count_favourite` AFTER INSERT ON `progress` FOR EACH ROW BEGIN
     IF NEW.is_favourite = '1' THEN
@@ -60,6 +62,31 @@ CREATE TRIGGER `update_count_favourite` AFTER INSERT ON `progress` FOR EACH ROW 
 END
 $$
 DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER `update_count_favourite_update` AFTER UPDATE ON `progress` FOR EACH ROW BEGIN
+    IF OLD.is_favourite = '1' AND NEW.is_favourite = '0' THEN
+        UPDATE quiz
+        SET count_favourite = count_favourite - 1
+        WHERE number = OLD.quiz_number;
+    ELSEIF OLD.is_favourite = '0' AND NEW.is_favourite = '1' THEN
+        UPDATE quiz
+        SET count_favourite = count_favourite + 1
+        WHERE number = NEW.quiz_number;
+    END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER `update_count_favourite_delete` AFTER DELETE ON `progress` FOR EACH ROW BEGIN
+    IF OLD.is_favourite = '1' THEN
+        UPDATE quiz
+        SET count_favourite = count_favourite - 1
+        WHERE number = OLD.quiz_number;
+    END IF;
+END$$
+DELIMITER ;
+
 DELIMITER $$
 CREATE TRIGGER `update_high_score` AFTER INSERT ON `progress` FOR EACH ROW BEGIN
     DECLARE max_marks INT;

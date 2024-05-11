@@ -1,3 +1,8 @@
 img {
     width: 14px;
 }
+
+header, main {
+    color: #ffffff !important;
+    padding: 80px 50px;
+}

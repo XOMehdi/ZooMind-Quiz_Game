@@ -46,31 +46,21 @@ $quiz_table = $conn->query($sql);
     <link rel="stylesheet" type="text/css" href="../css/explore.css" />
     <script src="../js/explore.js" defer></script>
     <title>ZooMind - Explore</title>
-</head>
+    <?php include_once('../include/sidebar.php'); ?>
 
-<body>
     <header>
         <nav>
             <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="./create.php">Create</a></li>
+                <li><img id="site-logo" src="../img/site_logo.png" alt="site logo"></li>
                 <li>
                     <input id="search" type="search" placeholder="Search" />
                     Search
                 </li>
-                <li><a href="./profile.php">Profile</a></li>
-
-                <?php if ($user_state === "signed_in") {
-                    echo "<li><a href='../sign_out.php'>Sign out</a></li>";
-                } else {
-                    echo "<li><a href='../index.html'>Sign up / Sign in</a></li>";
-                } ?>
-
             </ul>
         </nav>
+        <h1>Explore</h1>
     </header>
     <main>
-        <h1>Explore</h1>
         <form id="sort-by-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
             <select id="sort-by" name="sort-by">
                 <option value="" selected disabled hidden>Sort by</option>
@@ -80,31 +70,29 @@ $quiz_table = $conn->query($sql);
                 <option value="oldest">Oldest</option>
             </select>
         </form>
-        <ol id="quiz-list">
-            <form action="./play.php" method="get">
+        <form action="./play.php" method="get">
+            <ol id="quiz-list">
                 <?php while ($row = $quiz_table->fetch(PDO::FETCH_OBJ)) : ?>
-                    <li>
-                        <div class="quiz-card">
-                            <h3><?= $row->title ?></h3>
-                            <small>Category: <?= $row->category ?></small>
-                            <small>Difficulty: <?= $row->difficulty ?></small>
-                            <p><?= $row->description ?></p>
-                            <small>Pass/Fail: <?= $row->count_passed . "/" . $row->count_attempt - $row->count_passed ?></small>
-                            <small>High Score: <?= $row->high_score ?></small>
-                            <small>Uploaded By: <?= $row->upload_by ?></small>
-                            <small>Uploaded On: <?= $row->upload_on ?></small>
-                            <img id="heart-icon" src="../img/heart_icon.png" alt="heart icon">
-                            <small> <?= $row->count_favourite ?></small>
+                    <li class="quiz-card">
+                        <h3><?= $row->title ?></h3>
+                        <small>Category: <?= $row->category ?></small>
+                        <small>Difficulty: <?= $row->difficulty ?></small>
+                        <p><?= $row->description ?></p>
+                        <small>Pass/Fail: <?= $row->count_passed . "/" . $row->count_attempt - $row->count_passed ?></small>
+                        <small>High Score: <?= $row->high_score ?></small>
+                        <small>Uploaded By: <?= $row->upload_by ?></small>
+                        <small>Uploaded On: <?= $row->upload_on ?></small>
+                        <img id="heart-icon" src="../img/heart_icon.png" alt="heart icon">
+                        <small> <?= $row->count_favourite ?></small>
 
-                            <input id="is-favourite" type="hidden" name="is-favourite" value="0">
-                            <a class="play-link" href="./play.php?quiz-number=<?= $row->number ?>&is-favourite=0">Play</a>
-                        </div>
+                        <input id="is-favourite" type="hidden" name="is-favourite" value="0">
+                        <a class="play-link" href="./play.php?quiz-number=<?= $row->number ?>&is-favourite=0">Play</a>
                     </li>
                 <?php endwhile; ?>
-            </form>
-        </ol>
+            </ol>
+        </form>
     </main>
     <footer></footer>
-</body>
+    </body>
 
 </html>
