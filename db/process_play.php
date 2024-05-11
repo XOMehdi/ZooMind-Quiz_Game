@@ -14,6 +14,7 @@ if (isset($_POST['btn-submit-quiz'])) {
     $selected_options = $_POST['selected-options'];
 
     $obtained_marks = 0;
+    $is_attempt_correct = array();
     foreach ($selected_options as $index => $selected_option) {
 
         $sql = "SELECT * FROM options WHERE question_id = ? ORDER BY number ASC";
@@ -23,13 +24,22 @@ if (isset($_POST['btn-submit-quiz'])) {
         $count = 1;
         while ($row = $option_table->fetch(PDO::FETCH_OBJ)) {
 
-            if ($count == $selected_option && $row->is_answer == "1") {
-                $obtained_marks += 1;
+            if ($count == $selected_option) {
+                if ($row->is_answer == "1") {
+                    $obtained_marks += 1;
+                    $is_attempt_correct[] = true;
+                } else {
+                    $is_attempt_correct[] = false;
+                }
             }
 
             $count += 1;
         }
     }
+
+    $serialized_array = serialize($is_attempt_correct);
+
+    setcookie('is_attempt_correct', $serialized_array, time() + (86400 * 30), '/');
 
     $total_marks = sizeof($question_ids);
     $percentage = $obtained_marks / $total_marks * 100;
