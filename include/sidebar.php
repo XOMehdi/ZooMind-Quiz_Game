@@ -19,8 +19,6 @@
                 <li><a href="./favourite.php"><i class='bx bxs-heart'></i>Favourites</a></li>
                 <li><a href="./about.php"><i class='bx bx-info-circle'></i>About</a></li>
                 <?php
-                session_start();
-
                 $user_state = (isset($_SESSION['username'])) ? "signed_in" : "signed_out";
 
                 if ($user_state === "signed_in") {

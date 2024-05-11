@@ -12,7 +12,7 @@ $user_table->execute([$username]);
 
 $row_user = $user_table->fetch(PDO::FETCH_OBJ);
 
-$sql = "SELECT * FROM quiz INNER JOIN user ON upload_by = ?";
+$sql = "SELECT * FROM quiz WHERE upload_by = ?";
 $quiz_table = $conn->prepare($sql);
 $quiz_table->execute([$username]);
 

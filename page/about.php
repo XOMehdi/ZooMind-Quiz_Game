@@ -14,7 +14,7 @@
     </header>
     <section class="about">
         <div class="main">
-            <img src="../img/quizlogo.png">
+            <img src="../img/site_logo.png">
             <div class="about-text">
                 <h5>Unknown <span>Noobs</span></h5>
                 <h5>Mohammad Mehdi <span>&</span> Abdullah Khan</h5>
