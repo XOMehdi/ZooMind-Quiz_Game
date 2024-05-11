@@ -40,8 +40,6 @@ CREATE TRIGGER `increment_attempt_on_insert` AFTER INSERT ON `progress` FOR EACH
 END
 $$
 DELIMITER ;
-
-
 DELIMITER $$
 CREATE TRIGGER `increment_passed_on_pass` AFTER INSERT ON `progress` FOR EACH ROW BEGIN
     IF NEW.result = 'pass' THEN
@@ -52,8 +50,6 @@ CREATE TRIGGER `increment_passed_on_pass` AFTER INSERT ON `progress` FOR EACH RO
 END
 $$
 DELIMITER ;
-
-
 DELIMITER $$
 CREATE TRIGGER `update_count_favourite` AFTER INSERT ON `progress` FOR EACH ROW BEGIN
     IF NEW.is_favourite = '1' THEN
@@ -64,8 +60,6 @@ CREATE TRIGGER `update_count_favourite` AFTER INSERT ON `progress` FOR EACH ROW 
 END
 $$
 DELIMITER ;
-
-
 DELIMITER $$
 CREATE TRIGGER `update_high_score` AFTER INSERT ON `progress` FOR EACH ROW BEGIN
     DECLARE max_marks INT;
@@ -141,7 +135,7 @@ ALTER TABLE `options`
 -- Indexes for table `progress`
 --
 ALTER TABLE `progress`
-  ADD PRIMARY KEY (`username`,`quiz_number`,`attempt_on`),
+  ADD PRIMARY KEY (`username`,`quiz_number`),
   ADD KEY `fk_progress_quiz_number` (`quiz_number`);
 
 --
@@ -197,7 +191,6 @@ ALTER TABLE `options`
 ALTER TABLE `progress`
   ADD CONSTRAINT `fk_progress_quiz_number` FOREIGN KEY (`quiz_number`) REFERENCES `quiz` (`number`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `fk_progress_username` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
 --
 -- Constraints for table `question`
 --

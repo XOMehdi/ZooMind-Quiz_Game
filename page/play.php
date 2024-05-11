@@ -33,6 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $obtained_marks = $progress_row->obtained_marks;
         $total_marks = $progress_row->total_marks;
         $result = $progress_row->result;
+
+        $is_favourite = $progress_row->is_favourite;
     }
 }
 ?>
@@ -53,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <main>
         <form action="../db/process_play.php" method="post">
             <input type="hidden" name="quiz-number" value="<?= $row->number ?>">
+            <input type="hidden" name="quiz-is-attempted" value="<?= $quiz_is_attempted ?>">
             <h3><?= $row->quiz_title ?></h3>
             <small>Category: <?= $row->category ?></small>
             <small>Difficulty: <?= $row->difficulty ?></small>
@@ -80,6 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 echo "<li>$row->option_title</li>";
                             } ?>
                         </ol>
+
                         <input type="number" name="selected-options[]" placeholder="Enter your selected option number">
                         <div>
                             <?php
@@ -100,6 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
             <input type="submit" name="btn-submit-quiz" value="Evaluate">
         </form>
+
         <output id="quiz-result">
             <?php if ($quiz_is_attempted) : ?>
                 <h3>Quiz Result</h3>
