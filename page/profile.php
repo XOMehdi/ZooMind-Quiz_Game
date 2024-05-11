@@ -4,6 +4,7 @@ include('../secure.php');
 include_once('../db/connection.php');
 
 $username = $_SESSION['username'];
+$password = $_SESSION['password'];
 
 $sql = "SELECT * FROM user WHERE username = ?";
 $user_table = $conn->prepare($sql);
@@ -70,10 +71,10 @@ $progress_quiz_table->execute([$username]);
                 <input id="last_name" class="editable-input" type="text" name="last_name" readonly value="<?= $row_user->last_name ?>" />
 
                 <label for="username">Username:</label>
-                <input id="username" type="text" name="username" readonly value="<?= $row_user->username ?>" />
+                <input id="username" type="text" name="username" readonly disabled value="<?= $row_user->username ?>" />
 
                 <label for="password">Password:</label>
-                <input id="password" class="password" type="password" name="password" readonly value="<?= $row_user->password ?>" />
+                <input id="password" class="editable-input password" type="password" name="password" readonly value="<?= $password ?>" />
 
                 <input id="btn-edit" type="button" value="Edit">
                 <input type="submit" value="Save" name="btn-save">

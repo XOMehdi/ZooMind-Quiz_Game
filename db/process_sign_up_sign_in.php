@@ -30,9 +30,9 @@ if ($action === "sign_up") {
         $query->execute([$username, $first_name, $last_name, $hashed_password]);
 
         $_SESSION['username'] = $username;
-        // $_SESSION['password'] = $password;
+        $_SESSION['password'] = $password;
 
-        $_SESSION['password'] = $hashed_password;
+        // $_SESSION['password'] = $hashed_password;
 
         echo "success";
     } else {
@@ -53,9 +53,9 @@ if ($action === "sign_up") {
     if ($sign_in_username === $row->username && password_verify($sign_in_password, $row->password)) {
 
         $_SESSION['username'] = $sign_in_username;
+        $_SESSION['password'] = $sign_in_password;
 
-        // $_SESSION['password'] = $sign_in_password;
-        $_SESSION['password'] = $hashed_sign_in_password;
+        // $_SESSION['password'] = $hashed_sign_in_password;
 
         echo "success";
     } else {
