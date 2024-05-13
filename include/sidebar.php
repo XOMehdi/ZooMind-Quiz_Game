@@ -1,3 +1,4 @@
+<link rel="icon" type="image/x-icon" href="../img/site_logo.ico">
 <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
 <link rel="stylesheet" type="text/css" href="../css/sidebar.css">
 </head>
