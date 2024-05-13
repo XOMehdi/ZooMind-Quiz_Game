@@ -1,12 +1,5 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box; 
-}
-
-body {
-    background-color: #ffffff; 
-    color: #000000; 
 }
 
 main {
@@ -30,6 +23,7 @@ main {
     background-color: rgba(255, 242, 0, 0.993);
     color: black;
 }
+
 .header {
     text-align: center;
     background-color: #000000;
@@ -49,9 +43,11 @@ a{
     cursor: pointer;
     color: white;
 }
+
 .play-link:hover{
     background-color: rgb(5, 107, 133);
 }
+
 #heart-icon {
     max-width: 20px; 
 }

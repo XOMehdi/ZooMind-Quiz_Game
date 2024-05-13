@@ -1,52 +1,197 @@
-img {
-    width: 14px;
-    background-color: white;
-    border-radius: 50%;
+header, main {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff !important;
 }
-header {
-    padding-left: 120px;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
 
-}
-h1{
-    color: white;
+header h1 {
     text-align: center;
-    font-weight: 700;
-    font-size: 50px;
+    font-size: 60px;
 }
-main{
-    text-align: center;
-    margin-left: 28%;
-    margin-right: 20%;
+
+main {
+    margin: 50px auto;
+    padding: 20px 10%;
+}
+
+#outer-quiz-box {
+    width: 60%;
+    margin: auto;
+}
+
+.question-box > li {
+    list-style-type: upper-alpha;
+}
+
+li::marker {
+    color: #fff200fd;
+}
+
+#quiz-box {
+    margin-bottom: 50px;
+    border-radius: 8px;
+    box-shadow: 1px 2px 3px #fff200fd, 3px 8px 7px #fff200fd inset;
+    padding: 30px;
+    transition: 0.5s ease;
+}
+
+#quiz-box:hover {
+    transform: scale(1.1);
+    box-shadow: 3px 8px 7px #fff200fd inset, 3px 5px 7px #ffdf0cc5;
+    margin-bottom: 50px;
+}
+
+input, textarea {
+    display: inline-block;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+#title {
+    width: 100%;
+    border-radius: 8px;
+    border-style: none;
+    padding: 10px;
+    font-size: 28px;
+    background-color: #292727b5;
+    color: #ffffff;
+}
+
+#description {
+    width: 100%;
+    height: 100px;
+    border-radius: 8px;
+    border-style: none;
+    padding: 10px;
+    resize: none;
+    font-size: 16px;
+    background-color: #292727b5;
+    color: #ffffff;
+}
+
+#category {
+    width: 300px;
+    border-radius: 3px;
+    border-style: none;
+    padding: 10px;
+    background-color: #292727b5;
+    color: #ffffff;
+}
+
+#difficulty {
+    width: 130px;
+    border-radius: 3px;
+    border-style: none;
+    padding: 10px;
+    background-color: #292727b5;
+    color: #787a7c;
+}
+
+#difficulty:focus {
+    color: #ffffff;
+}
+
+.filled-heart {
+    cursor: pointer;
+    color: #fff200fd;
+    font-size: 18px;
+}
+
+.question-box {
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 1px 2px 3px #fff200fd, 2px 5px 5px #fff200fd inset;
+    padding: 30px;
+    transition: 0.5s ease;
+    color: #ffffff;
+}
+
+.question-box:hover {
+    transform: scale(1.1);
+    box-shadow: 2px 5px 5px #fff200fd inset, 3px 5px 7px #ffdf0cc5;
+    margin: 50px 0 35px 0;
+}
+
+.question-statement {
+    width: 100%;
+    border-radius: 3px;
+    border-style: none;
+    padding: 10px;
+    background-color: #292727b5;
+    color: #ffffff;
+}
+
+.question-option {
+    width: 150px;
+    border-radius: 2px;
+    border-style: none;
+    padding: 10px;
+    background-color: #292727b5;
+    color: #ffffff;
+}
+
+.correct-option {
+    width: 170px;
+    margin: 20px 0 0 0;
+    border-radius: 2px;
+    border-style: none;
+    padding: 10px;
+    background-color: #292727b5;
+    color: #ffffff;
+}
+
+#btn-evaluate {
+    border-radius: 10px;
+    border-style: none;
+    padding: 8px 30px;
+    cursor: pointer;
     background-color: rgba(255, 242, 0, 0.993);
-    line-height: 25px;
-    border-radius: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
 }
-main:hover{
+
+#btn-evaluate:hover {
+    border: 2px solid #ffdf0cc5;
     background-color: transparent;
-   border: 5px solid rgba(255, 242, 0, 0.993);
-    color: white;
-}.option{
-    padding-left: 10px;
-    width: 20%;
-    height: 30px;
-    font-size: 15px;
-    border-radius: 8px;
-    background-color: #292727b5;
-    border-style: none;
     color: white;
 }
-.explore{
-    padding-left: 5px;
-   margin-top:2px ;
-    width: 10%;
-    height: 27px;
-    font-size: 15px;
+
+#quiz-result {
+    display: block;
+    margin: 50px auto 50px auto;
     border-radius: 8px;
-    background-color: #292727b5;
-    border-style: none;
-    color: white;
+    box-shadow: 1px 2px 3px #fff200fd, 3px 8px 7px #fff200fd inset;
+    padding: 30px;
+    transition: 0.5s ease;
+}
+
+#quiz-result:hover {
+    transform: scale(1.1);
+    box-shadow: 3px 8px 7px #fff200fd inset, 3px 5px 7px #ffdf0cc5;
+    margin-bottom: 50px;
+}
+
+output > h2 {
+    margin-bottom: 10px;
+    text-align: center;
+    color: #fff200fd;
+}
+
+@media only screen and (max-width: 500px), (max-height: 500px) {
+    header h1 {
+        text-align: center;
+        font-size: 30px;
+    }
+
+    main {
+        padding: 0;
+    }
+    
+    input, textarea, select, li {
+        width: 100% !important;
+        font-size: 12px;
+    }
+
+    #title, #description {
+        font-size: 14px;
+    }
 }

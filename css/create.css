@@ -133,16 +133,17 @@ input, textarea {
     color: #ffffff;
 }
 
-#add-question-icon {
-    cursor: pointer;
-    color: #fff200fd;
-    font-size: 70px;
-}
 
 .add-option-icon {
     cursor: pointer;
     color: #fff200fd;
     font-size: 24px;
+}
+
+#add-question-icon {
+    cursor: pointer;
+    color: #fff200fd;
+    font-size: 70px;
 }
 
 #btn-post {

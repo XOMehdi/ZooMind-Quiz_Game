@@ -1,15 +1,12 @@
-const heartIconImg = document.getElementById("heart-icon");
+const heartIcon = document.getElementById("heart-icon");
 const isFavouriteInput = document.getElementById("is-favourite");
 
-heartIconImg.onclick = () => {
+heartIcon.onclick = () => {
   if (isFavouriteInput.value == "0") {
-    heartIconImg.src = "../img/heart_filled_icon.png";
-    heartIconImg.alt = "heart filled icon";
-
+    heartIcon.classList.add('filled-heart');
     isFavouriteInput.value = "1";
   } else {
-    heartIconImg.src = "../img/heart_icon.png";
-    heartIconImg.alt = "heart icon";
+    heartIcon.classList.remove('filled-heart');
     isFavouriteInput.value = "0";
   }
 };

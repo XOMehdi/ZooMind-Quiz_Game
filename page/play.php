@@ -54,32 +54,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         <h1>Play</h1>
     </header>
     <main class="main-text">
-        <div>
+        <div id="outer-quiz-box">
             <form action="../db/process_play.php" method="post">
-                <input type="hidden" name="quiz-number" value="<?= $row->number ?>">
-                <input type="hidden" name="quiz-is-attempted" value="<?= $quiz_is_attempted ?>">
-                <h3><?= $row->quiz_title ?></h3>
-                <small>Category: <?= $row->category ?></small>
-                <small>Difficulty: <?= $row->difficulty ?></small>
-                <p><?= $row->description ?></p>
-                <div>
-                    <small>Add to Favourites</small>
-                    <?php if ($is_favourite == "0") : ?>
-                    <img id="heart-icon" src="../img/heart_icon.png" alt="heart icon">
-                    <?php else : ?>
-                    <img id="heart-icon" src="../img/heart_filled_icon.png" alt="heart icon">
-                    <?php endif; ?>
-                    <input id="is-favourite" type="hidden" name="is-favourite" value="<?= $is_favourite ?>">
+                <div id="quiz-box">
+                    <input type="hidden" name="quiz-number" value="<?= $row->number ?>">
+                    <input type="hidden" name="quiz-is-attempted" value="<?= $quiz_is_attempted ?>">
+                    <h3><?= $row->quiz_title ?></h3>
+                    <small>Category: <?= $row->category ?></small>
+                    <small>Difficulty: <?= $row->difficulty ?></small>
+                    <p><?= $row->description ?></p>
+                    <div>
+                        <small>Add to Favourites</small>
+                        <?php if ($is_favourite == "0") : ?>
+                        <span><i id="heart-icon" class='bx bx-heart'></i></span>
+                        <?php else : ?>
+                        <span><i id="heart-icon" class='bx bxs-heart filled-heart'></i></span>
+                        <?php endif; ?>
+                        <input id="is-favourite" type="hidden" name="is-favourite" value="<?= $is_favourite ?>">
+                    </div>
                 </div>
 
                 <?php $index = 0;
                 while ($row = $question_table->fetch(PDO::FETCH_OBJ)) : ?>
-                <ol>
-                    <li>
-                        <input type="hidden" name="question-ids[]" value="<?= $row->id ?>">
-                        <p><?= $row->statement ?></p>
-                        <ol>
-                            <?php
+                <ol id="ordered-list-question">
+                    <div class="question-box">
+                        <li>
+                            <input type="hidden" name="question-ids[]" value="<?= $row->id ?>">
+                            <p id="question"><?= $row->statement ?></p>
+                            <ol id="ordered-list-option" class="ordered-list-option">
+                                <?php
                                 $sql = "SELECT *, title AS option_title FROM options WHERE question_id = ? ORDER BY number ASC";
                                 $option_table = $conn->prepare($sql);
                                 $option_table->execute([$row->id]);
@@ -87,12 +90,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 while ($row = $option_table->fetch(PDO::FETCH_OBJ)) {
                                     echo "<li>$row->option_title</li>";
                                 } ?>
-                        </ol>
+                            </ol>
 
-                        <input class="option" type="number" name="selected-options[]"
-                            placeholder="Enter your selected option number">
-                        <div>
-                            <?php
+                            <input class="correct-option" type="number" name="selected-options[]"
+                                placeholder="Enter your selected option number">
+                            <div>
+                                <?php
                                 if (isset($_COOKIE['is_attempt_correct'])) {
                                     $is_attempt_correct = unserialize($_COOKIE['is_attempt_correct']);
                                     if ($is_attempt_correct[$index]) {
@@ -103,21 +106,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 }
                                 $index += 1;
                                 ?>
-                        </div>
-                    </li>
+                            </div>
+                        </li>
+                    </div>
                 </ol>
                 <?php endwhile; ?>
-                <input class="explore" type="submit" name="btn-submit-quiz" value="Evaluate">
+                <input id="btn-evaluate" type="submit" name="btn-submit-quiz" value="Evaluate">
             </form>
+            <output id="quiz-result">
+                <?php if ($quiz_is_attempted) : ?>
+                <h2>Quiz Result</h2>
+                <p>Obtained Marks: <?= $obtained_marks ?></p>
+                <p>Total Marks: <?= $total_marks ?></p>
+                <p>Result: <?= $result ?></p>
+                <?php endif; ?>
+            </output>
         </div>
-        <output id="quiz-result">
-            <?php if ($quiz_is_attempted) : ?>
-            <h3>Quiz Result</h3>
-            <p>Obtained Marks: <?= $obtained_marks ?></p>
-            <p>Total Marks: <?= $total_marks ?></p>
-            <p>Result: <?= $result ?></p>
-            <?php endif; ?>
-        </output>
     </main>
     <footer></footer>
     </body>
