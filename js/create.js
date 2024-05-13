@@ -21,7 +21,9 @@ addOptionIconBox.addEventListener("click", () => {
 addQuestionIcon.addEventListener("click", function () {
   const questionList = document.getElementById("ordered-list-question");
   const questionCount = questionList.children.length;
-  console.log(questionCount);
+
+  const questionBox = document.createElement("div");
+  questionBox.classList.add("question-box");
 
   const correctOptionInput = document.createElement("input");
   correctOptionInput.type = "number";
@@ -30,8 +32,6 @@ addQuestionIcon.addEventListener("click", function () {
   correctOptionInput.placeholder = "Correct option number";
 
   const li = document.createElement("li");
-  const div = document.createElement("div");
-  div.classList.add("question-box");
 
   const questionInput = document.createElement("input");
   questionInput.type = "text";
@@ -76,13 +76,13 @@ addQuestionIcon.addEventListener("click", function () {
     newOptionListItem.appendChild(addOptionIconSpan);
     optionList.appendChild(newOptionListItem);
   });
-
-  div.appendChild(questionInput);
-  div.appendChild(optionList);
-  div.appendChild(correctOptionInput);
-
-  li.appendChild(div);
-  questionList.appendChild(li);
+  
+  li.appendChild(questionInput);
+  li.appendChild(optionList);
+  li.appendChild(correctOptionInput);
+  
+  questionBox.appendChild(li);
+  questionList.appendChild(questionBox);
 });
 
 // css effects

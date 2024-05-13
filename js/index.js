@@ -19,6 +19,8 @@ const btnSignUp = document.getElementById("btn-sign_up");
 const inputFields = document.querySelectorAll(
   'input[type="text"], input[type="password"]'
 );
+const forwardIcon = document.getElementById("forward-icon");
+
 
 showSignUpLink.onclick = () => {
   signUpBox.style.display = "flex";
@@ -57,16 +59,17 @@ signInUsernameInput.addEventListener("keypress", (e) => {
     const inputBoxPassword = document.getElementById("input-box-password");
     inputBoxPassword.style.height = "55px";
 
-    const forwardIcon = document.getElementById("forward-icon");
     forwardIcon.style.bottom = "14px";
     forwardIcon.style.right = "85px";
   }
 });
 
 signInPasswordInput.addEventListener("keypress", signIn);
+forwardIcon.addEventListener("click", signIn);
 
-usernameInput.addEventListener("blur", isValidUsername);
-passwordInput.addEventListener("blur", isValidPassword);
+usernameInput.addEventListener("input", isValidUsername);
+passwordInput.addEventListener("input", isValidPassword);
+confirmPasswordInput.addEventListener("input", isValidPassword);
 
 signInLink.addEventListener("click", animateFormUp);
 signUpLink.addEventListener("click", animateFormDown);
@@ -119,7 +122,7 @@ function signUp(e) {
 function signIn(e) {
   signInerrorMessage.innerText = "";
 
-  if (e.key === "Enter") {
+  if (e.key === "Enter" || e.type === "click") {
     e.preventDefault();
 
     let formData = new FormData(document.getElementById("sign_in-form"));
