@@ -1,3 +1,4 @@
+const mainBox = document.getElementById("main-box");
 const signUpForm = document.getElementById("sign_up-form");
 const showSignUpLink = document.getElementById("show-sign_up-link");
 const showSignInLink = document.getElementById("show-sign_in-link");
@@ -21,10 +22,12 @@ const inputFields = document.querySelectorAll(
 
 showSignUpLink.onclick = () => {
   signUpBox.style.display = "flex";
+  mainBox.style.display = "none";
 };
 
 showSignInLink.onclick = () => {
   signInBox.style.display = "flex";
+  mainBox.style.display = "none";
 };
 
 Array.from(inputFields).forEach((inputField) => {
@@ -39,6 +42,7 @@ Array.from(inputFields).forEach((inputField) => {
 
 btnCancel.onclick = () => {
   signUpBox.style.display = "none";
+  mainBox.style.display = "flex";
 };
 
 signUpForm.addEventListener("submit", signUp);

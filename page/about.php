@@ -10,19 +10,19 @@
     <?php include_once('../include/sidebar.php'); ?>
 
     <header>
-        <h1>About Us</h1>
     </header>
     <section class="about">
         <div class="main">
-            <img src="../img/site_logo.png">
+            <img id="site-logo" src="../img/site_logo.png">
             <div class="about-text">
-                <h5>Unknown <span>Noobs</span></h5>
+                <h1>About Us</h1>
+                <h5>ZooMind <span id="text-2">Founders</span> </h5>
                 <h5>Mohammad Mehdi <span>&</span> Abdullah Khan</h5>
 
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quis illo ullam mollitia voluptatem,
                     repellat praesentium odio totam eveniet distinctio asperiores possimus consequatur ut officia quo
                     fugiat, debitis voluptate officiis?</p>
-                <button type="button" id="bttn">Contact us</button>
+                <button type="button" id="btn">Contact us</button>
             </div>
         </div>
     </section>

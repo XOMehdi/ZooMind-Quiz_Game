@@ -66,19 +66,23 @@ $progress_quiz_table->execute([$username]);
             <form id="edit-profile-form" action="../db/process_profile.php" method="post">
                 <h2>Personal Information</h2>
                 <label for="first_name">First Name:</label>
-                <input id="first_name" class="editable-input" type="text" name="first_name" readonly value="<?= $row_user->first_name ?>" />
+                <input class="input-field" id="first_name" class="editable-input" type="text" name="first_name" readonly
+                    value="<?= $row_user->first_name ?>" />
 
                 <label for="last_name">Last Name:</label>
-                <input id="last_name" class="editable-input" type="text" name="last_name" readonly value="<?= $row_user->last_name ?>" />
+                <input class="input-field" id="last_name" class="editable-input" type="text" name="last_name" readonly
+                    value="<?= $row_user->last_name ?>" />
 
-                <label for="username">Username:</label>
-                <input id="username" type="text" name="username" readonly disabled value="<?= $row_user->username ?>" />
+                <br><br><label for="username">Username:</label>
+                <input class="input-field" id="username" type="text" name="username" readonly disabled
+                    value="<?= $row_user->username ?>" />
 
                 <label for="password">Password:</label>
-                <input id="password" class="editable-input password" type="password" name="password" readonly value="<?= $password ?>" />
+                <input class="input-field" id="password" class="editable-input password" type="password" name="password"
+                    readonly value="<?= $password ?>" />
 
-                <input id="btn-edit" type="button" value="Edit">
-                <input type="submit" value="Save" name="btn-save">
+                <br><input class="btn" id="btn-edit" type="button" value="Edit">
+                <input class="btn" type="submit" value="Save" name="btn-save">
             </form>
         </div>
         <div>
@@ -106,25 +110,29 @@ $progress_quiz_table->execute([$username]);
         </div>
         <div>
             <h2>Solved Quizzes</h2>
+
             <ol id="quiz-list">
                 <?php while ($row = $progress_quiz_table->fetch(PDO::FETCH_OBJ)) : ?>
-                    <li class="quiz-card">
+                <div class="quiz-card">
+                    <li>
                         <h3><?= $row->title ?></h3>
                         <small>Category: <?= $row->category ?></small>
-                        <small>Difficulty: <?= $row->difficulty ?></small>
+                        <br><small>Difficulty: <?= $row->difficulty ?></small>
                         <p><?= $row->description ?></p>
-                        <small>Marks: <?= $row->obtained_marks . '/' . $row->total_marks ?></small>
-                        <small>Result: <?= $row->result ?></small>
-                        <small>Attempted on: <?= $row->attempt_on ?></small>
+                        <br><small>Marks: <?= $row->obtained_marks . '/' . $row->total_marks ?></small>
+                        <br><small>Result: <?= $row->result ?></small>
+                        <br><small>Attempted on: <?= $row->attempt_on ?></small>
 
                         <?php if ($row->is_favourite == "1") : ?>
-                            <img src="../img/heart_filled_icon.png" alt="filled heart icon">
+                        <img src="../img/heart_filled_icon.png" alt="filled heart icon">
                         <?php else : ?>
-                            <img src="../img/heart_icon.png" alt="heart icon">
+                        <img src="../img/heart_icon.png" alt="heart icon">
                         <?php endif; ?>
                     </li>
+                </div>
                 <?php endwhile; ?>
             </ol>
+
         </div>
     </main>
     <footer></footer>

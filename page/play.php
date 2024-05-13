@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <header>
         <h1>Play</h1>
     </header>
-    <main>
+    <main class="main-text">
         <div>
             <form action="../db/process_play.php" method="post">
                 <input type="hidden" name="quiz-number" value="<?= $row->number ?>">
@@ -65,21 +65,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 <div>
                     <small>Add to Favourites</small>
                     <?php if ($is_favourite == "0") : ?>
-                        <img id="heart-icon" src="../img/heart_icon.png" alt="heart icon">
+                    <img id="heart-icon" src="../img/heart_icon.png" alt="heart icon">
                     <?php else : ?>
-                        <img id="heart-icon" src="../img/heart_filled_icon.png" alt="heart icon">
+                    <img id="heart-icon" src="../img/heart_filled_icon.png" alt="heart icon">
                     <?php endif; ?>
                     <input id="is-favourite" type="hidden" name="is-favourite" value="<?= $is_favourite ?>">
                 </div>
 
                 <?php $index = 0;
                 while ($row = $question_table->fetch(PDO::FETCH_OBJ)) : ?>
-                    <ol>
-                        <li>
-                            <input type="hidden" name="question-ids[]" value="<?= $row->id ?>">
-                            <p><?= $row->statement ?></p>
-                            <ol>
-                                <?php
+                <ol>
+                    <li>
+                        <input type="hidden" name="question-ids[]" value="<?= $row->id ?>">
+                        <p><?= $row->statement ?></p>
+                        <ol>
+                            <?php
                                 $sql = "SELECT *, title AS option_title FROM options WHERE question_id = ? ORDER BY number ASC";
                                 $option_table = $conn->prepare($sql);
                                 $option_table->execute([$row->id]);
@@ -87,11 +87,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 while ($row = $option_table->fetch(PDO::FETCH_OBJ)) {
                                     echo "<li>$row->option_title</li>";
                                 } ?>
-                            </ol>
+                        </ol>
 
-                            <input type="number" name="selected-options[]" placeholder="Enter your selected option number">
-                            <div>
-                                <?php
+                        <input class="option" type="number" name="selected-options[]"
+                            placeholder="Enter your selected option number">
+                        <div>
+                            <?php
                                 if (isset($_COOKIE['is_attempt_correct'])) {
                                     $is_attempt_correct = unserialize($_COOKIE['is_attempt_correct']);
                                     if ($is_attempt_correct[$index]) {
@@ -102,19 +103,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 }
                                 $index += 1;
                                 ?>
-                            </div>
-                        </li>
-                    </ol>
+                        </div>
+                    </li>
+                </ol>
                 <?php endwhile; ?>
-                <input type="submit" name="btn-submit-quiz" value="Evaluate">
+                <input class="explore" type="submit" name="btn-submit-quiz" value="Evaluate">
             </form>
         </div>
         <output id="quiz-result">
             <?php if ($quiz_is_attempted) : ?>
-                <h3>Quiz Result</h3>
-                <p>Obtained Marks: <?= $obtained_marks ?></p>
-                <p>Total Marks: <?= $total_marks ?></p>
-                <p>Result: <?= $result ?></p>
+            <h3>Quiz Result</h3>
+            <p>Obtained Marks: <?= $obtained_marks ?></p>
+            <p>Total Marks: <?= $total_marks ?></p>
+            <p>Result: <?= $result ?></p>
             <?php endif; ?>
         </output>
     </main>

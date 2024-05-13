@@ -1,8 +1,52 @@
 img {
     width: 14px;
+    background-color: white;
+    border-radius: 50%;
 }
+header {
+    padding-left: 120px;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
 
-header, main {
-    color: #ffffff !important;
-    padding: 80px 50px;
+}
+h1{
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    font-size: 50px;
+}
+main{
+    text-align: center;
+    margin-left: 28%;
+    margin-right: 20%;
+    background-color: rgba(255, 242, 0, 0.993);
+    line-height: 25px;
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+main:hover{
+    background-color: transparent;
+   border: 5px solid rgba(255, 242, 0, 0.993);
+    color: white;
+}.option{
+    padding-left: 10px;
+    width: 20%;
+    height: 30px;
+    font-size: 15px;
+    border-radius: 8px;
+    background-color: #292727b5;
+    border-style: none;
+    color: white;
+}
+.explore{
+    padding-left: 5px;
+   margin-top:2px ;
+    width: 10%;
+    height: 27px;
+    font-size: 15px;
+    border-radius: 8px;
+    background-color: #292727b5;
+    border-style: none;
+    color: white;
 }

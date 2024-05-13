@@ -1,7 +1,7 @@
 const addQuestionIcon = document.getElementById("add-question-icon");
-const addOptionIcon = document.getElementById("add-option-icon");
+const addOptionIconBox = document.getElementById("add-option-icon-box");
 
-addOptionIcon.addEventListener("click", () => {
+addOptionIconBox.addEventListener("click", () => {
   optionList = document.getElementById("ordered-list-option");
 
   const newOptionListItem = document.createElement("li");
@@ -10,10 +10,12 @@ addOptionIcon.addEventListener("click", () => {
   newOptionInput.classList.add("question-option");
 
   newOptionInput.name = `questions[0][options][]`;
-  newOptionInput.value = "Option";
+  newOptionInput.placeholder = "Write your option here";
 
+  newOptionListItem.classList.add("question-options-li");
   newOptionListItem.appendChild(newOptionInput);
-  optionList.insertBefore(newOptionListItem, addOptionIcon);
+  newOptionListItem.appendChild(addOptionIconBox);
+  optionList.appendChild(newOptionListItem);
 });
 
 addQuestionIcon.addEventListener("click", function () {
@@ -23,6 +25,7 @@ addQuestionIcon.addEventListener("click", function () {
 
   const correctOptionInput = document.createElement("input");
   correctOptionInput.type = "number";
+  correctOptionInput.classList.add("correct-option");
   correctOptionInput.name = `questions[${questionCount}][correct_option]`;
   correctOptionInput.placeholder = "Correct option number";
 
@@ -34,38 +37,45 @@ addQuestionIcon.addEventListener("click", function () {
   questionInput.type = "text";
   questionInput.classList.add("question-statement");
   questionInput.name = `questions[${questionCount}][statement]`;
-  questionInput.value = "Write your question statement here";
+  questionInput.placeholder = "Write your question statement here";
 
   const optionList = document.createElement("ol");
   optionList.classList.add("ordered-list-option");
 
   const optionListItem = document.createElement("li");
+
   const optionInput = document.createElement("input");
   optionInput.type = "text";
   optionInput.classList.add("question-option");
   optionInput.name = `questions[${questionCount}][options][]`;
-  optionInput.value = "Option";
+  optionInput.placeholder = "Write your option here";
+
+  const addOptionIcon = document.createElement("i");
+  addOptionIcon.classList.add("add-option-icon");
+  addOptionIcon.classList.add("bx");
+  addOptionIcon.classList.add("bx-plus-circle");
+
+  const addOptionIconSpan = document.createElement("span");
+  addOptionIconSpan.appendChild(addOptionIcon);
 
   optionListItem.appendChild(optionInput);
+  optionListItem.appendChild(addOptionIconSpan);
   optionList.appendChild(optionListItem);
 
-  const addOptionButton = document.createElement("span");
-  addOptionButton.classList.add("add-option-icon");
-  addOptionButton.textContent = "+";
-  addOptionButton.addEventListener("click", function () {
+  addOptionIconSpan.addEventListener("click", function () {
     const newOptionListItem = document.createElement("li");
+    newOptionListItem.classList.add("question-options-li");
+
     const newOptionInput = document.createElement("input");
     newOptionInput.type = "text";
     newOptionInput.classList.add("question-option");
     newOptionInput.name = `questions[${questionCount}][options][]`;
-    newOptionInput.value = "Option";
+    newOptionInput.placeholder = "Write your option here";
 
     newOptionListItem.appendChild(newOptionInput);
+    newOptionListItem.appendChild(addOptionIconSpan);
     optionList.appendChild(newOptionListItem);
-    optionList.insertBefore(newOptionListItem, addOptionButton);
   });
-
-  optionList.appendChild(addOptionButton);
 
   div.appendChild(questionInput);
   div.appendChild(optionList);
@@ -74,3 +84,65 @@ addQuestionIcon.addEventListener("click", function () {
   li.appendChild(div);
   questionList.appendChild(li);
 });
+
+// css effects
+function myMouse() {
+  const x = document.getElementById("title");
+  x.style.borderBottom = "2px solid yellow";
+}
+
+function mouse() {
+  const x = document.getElementById("title");
+  x.style.borderBottom = "none";
+}
+//------//
+function des() {
+  const x = document.getElementById("description");
+  x.style.borderBottom = "2px solid yellow";
+}
+
+function cription() {
+  const x = document.getElementById("description");
+  x.style.borderBottom = "none";
+}
+//-----//
+function cate() {
+  const x = document.getElementById("category");
+  x.style.borderBottom = "2px solid yellow";
+}
+
+function gory() {
+  const x = document.getElementById("category");
+  x.style.borderBottom = "none";
+}
+//------//
+function diff() {
+  const x = document.getElementById("difficulty");
+  x.style.borderBottom = "2px solid yellow";
+}
+
+function ficulty() {
+  const x = document.getElementById("difficulty");
+  x.style.borderBottom = "none";
+}
+//-----//
+function question() {
+  const x = document.getElementById("question");
+  x.style.borderBottom = "2px solid yellow";
+}
+
+function box() {
+  const x = document.getElementById("question");
+  x.style.borderBottom = "none";
+}
+//-----//
+function option() {
+  const x = document.getElementById("option");
+  x.style.borderBottom = "2px solid yellow";
+}
+
+function boxes() {
+  const x = document.getElementById("option");
+  x.style.borderBottom = "none";
+}
+//----//

@@ -10,7 +10,7 @@
             <i class='bx bx-window-close' id="cancel"></i>
         </label>
         <div class="sidebar">
-            <header><b>MENU</b></header>
+            <div id="header"><b>MENU</b></div>
             <ul>
                 <li><a href="../index.html"><i class='bx bx-home'></i>Home</a></li>
                 <li><a href="./create.php"><i class='bx bx-edit'></i>Create</a></li>

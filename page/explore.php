@@ -47,19 +47,17 @@ $quiz_table = $conn->query($sql);
     <script src="../js/explore.js" defer></script>
     <title>ZooMind - Explore</title>
     <?php include_once('../include/sidebar.php'); ?>
+</head>
 
-    <header>
-        <nav>
-            <ul>
-                <li><img id="site-logo" src="../img/site_logo.png" alt="site logo"></li>
-                <li>
-                    <input id="search" type="search" placeholder="Search" />
-                    Search
-                </li>
-            </ul>
-        </nav>
+<body>
+    <div class="header">
+        <img id="site-logo" src="../img/site_logo.png" alt="site logo">
+        <li>
+            <input id="search" type="search" placeholder="Search" />
+            <span> Search</span>
+        </li>
         <h1>Explore</h1>
-    </header>
+    </div>
     <main>
         <form id="sort-by-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
             <select id="sort-by" name="sort-by">
@@ -73,26 +71,26 @@ $quiz_table = $conn->query($sql);
         <form action="./play.php" method="get">
             <ol id="quiz-list">
                 <?php while ($row = $quiz_table->fetch(PDO::FETCH_OBJ)) : ?>
-                    <li class="quiz-card">
-                        <h3><?= $row->title ?></h3>
-                        <small>Category: <?= $row->category ?></small>
-                        <small>Difficulty: <?= $row->difficulty ?></small>
-                        <p><?= $row->description ?></p>
-                        <small>Pass/Fail: <?= $row->count_passed . "/" . $row->count_attempt - $row->count_passed ?></small>
-                        <small>High Score: <?= $row->high_score ?></small>
-                        <small>Uploaded By: <?= $row->upload_by ?></small>
-                        <small>Uploaded On: <?= $row->upload_on ?></small>
-                        <img id="heart-icon" src="../img/heart_icon.png" alt="heart icon">
-                        <small> <?= $row->count_favourite ?></small>
+                <span class="quiz-card">
+                    <h3><?= $row->title ?></h3>
+                    <small>Category: <?= $row->category ?></small>
+                    <small>Difficulty: <?= $row->difficulty ?></small>
+                    <p><?= $row->description ?></p>
+                    <small>Pass/Fail: <?= $row->count_passed . "/" . $row->count_attempt - $row->count_passed ?></small>
+                    <small>High Score: <?= $row->high_score ?></small>
+                    <small>Uploaded By: <?= $row->upload_by ?></small>
+                    <small>Uploaded On: <?= $row->upload_on ?></small>
+                    <br><img id="heart-icon" src="../img/heart_icon.png" alt="heart icon">
+                    <small> <?= $row->count_favourite ?></small>
 
-                        <input id="is-favourite" type="hidden" name="is-favourite" value="0">
-                        <a class="play-link" href="./play.php?quiz-number=<?= $row->number ?>&is-favourite=0">Play</a>
-                    </li>
+                    <input id="is-favourite" type="hidden" name="is-favourite" value="0">
+                    <br><a class="play-link" href="./play.php?quiz-number=<?= $row->number ?>&is-favourite=0">Play</a>
+                </span>
                 <?php endwhile; ?>
             </ol>
         </form>
     </main>
     <footer></footer>
-    </body>
+</body>
 
-</html>
+</html>body
