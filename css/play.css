@@ -125,7 +125,7 @@ li::marker {
     border-style: none;
     padding: 8px 20px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
     background-color: #fff200fd;
 }

@@ -68,7 +68,7 @@ $quiz_table = $conn->query($sql);
     </header>
     <main>
         <form action="./play.php" method="get">
-            <ol id="quiz-list">
+            <div id="quiz-list">
                 <?php while ($row = $quiz_table->fetch(PDO::FETCH_OBJ)) : ?>
                     <div class="quiz-card">
                         <h3 class="title"><?= $row->title ?></h3>
@@ -91,7 +91,7 @@ $quiz_table = $conn->query($sql);
                         <a class="play-link" href="./play.php?quiz-number=<?= $row->number ?>&is-favourite=0">Play</a>
                     </div>
                 <?php endwhile; ?>
-            </ol>
+            </div>
         </form>
     </main>
     <footer></footer>

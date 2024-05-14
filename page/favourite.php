@@ -25,22 +25,32 @@ $progress_quiz_table->execute([$username]);
         <h1>Favourites</h1>
     </header>
     <main>
-        <ol id="quiz-list">
+        <div id="quiz-list">
             <?php while ($row = $progress_quiz_table->fetch(PDO::FETCH_OBJ)) : ?>
                 <?php if ($row->is_favourite == "1") : ?>
-                    <li class="quiz-card">
-                        <h3><?= $row->title ?></h3>
-                        <small>Category: <?= $row->category ?></small>
-                        <small>Difficulty: <?= $row->difficulty ?></small>
-                        <p><?= $row->description ?></p>
-                        <small>Marks: <?= $row->obtained_marks . '/' . $row->total_marks ?></small>
-                        <small>Result: <?= $row->result ?></small>
-                        <small>Attempted on: <?= $row->attempt_on ?></small>
-                        <img src="../img/heart_filled_icon.png" alt="filled heart icon">
-                    </li>
+                    <div class="quiz-card">
+                        <h3 class="title"><?= $row->title ?></h3>
+                        <div class="quiz-info-box">
+                            <small>Category: <?= $row->category ?></small>
+                            <small>Difficulty: <?= $row->difficulty ?></small>
+                        </div>
+                        <p class="description"><?= $row->description ?></p>
+                        <ul class="quiz-info-box quiz-detail">
+                            <li>Pass/Fail: <b><?= $row->count_passed . "/" . $row->count_attempt - $row->count_passed ?></b></li>
+                            <li>High Score: <b><?= $row->high_score ?></b></li>
+                            <li>Uploaded By: <b><?= $row->upload_by ?></b></li>
+                            <li>Uploaded On: <b><?= $row->upload_on ?></b></li>
+                            <li class="favourite-box">
+                                <span><i id="heart-icon" class='bx bx-heart'></i></span>
+                                <b> <?= $row->count_favourite ?></b>
+                                <input id="is-favourite" type="hidden" name="is-favourite" value="0">
+                            </li>
+                        </ul>
+                        <a class="play-link" href="./play.php?quiz-number=<?= $row->number ?>&is-favourite=0">Play</a>
+                    </div>
                 <?php endif; ?>
             <?php endwhile; ?>
-        </ol>
+        </div>
     </main>
     </body>
     <footer></footer>

@@ -62,77 +62,69 @@ $progress_quiz_table->execute([$username]);
         <h1>Profile</h1>
     </header>
     <main>
-        <div>
+        <div class="outer-box">
+            <h2>Personal Information</h2>
             <form id="edit-profile-form" action="../db/process_profile.php" method="post">
-                <h2>Personal Information</h2>
-                <label for="first_name">First Name:</label>
-                <input class="input-field" id="first_name" class="editable-input" type="text" name="first_name" readonly
-                    value="<?= $row_user->first_name ?>" />
-
-                <label for="last_name">Last Name:</label>
-                <input class="input-field" id="last_name" class="editable-input" type="text" name="last_name" readonly
-                    value="<?= $row_user->last_name ?>" />
-
-                <br><br><label for="username">Username:</label>
-                <input class="input-field" id="username" type="text" name="username" readonly disabled
-                    value="<?= $row_user->username ?>" />
-
-                <label for="password">Password:</label>
-                <input class="input-field" id="password" class="editable-input password" type="password" name="password"
-                    readonly value="<?= $password ?>" />
-
-                <br><input class="btn" id="btn-edit" type="button" value="Edit">
-                <input class="btn" type="submit" value="Save" name="btn-save">
+                <div id="personal-box">
+                    <div>
+                        <label for="first_name">First Name:</label>
+                        <input id="first_name" class="editable-input" type="text" name="first_name" readonly value="<?= $row_user->first_name ?>" />
+                    </div>
+                    <div>
+                        <label for="last_name">Last Name:</label>
+                        <input id="last_name" class="editable-input" type="text" name="last_name" readonly value="<?= $row_user->last_name ?>" />
+                    </div>
+                    <div>
+                        <label for="username">Username:</label>
+                        <input id="username" type="text" name="username" readonly disabled value="<?= $row_user->username ?>" />
+                    </div>
+                    <div>
+                        <label for="password">Password:</label>
+                        <input id="password" class="editable-input" type="password" name="password" readonly value="<?= $password ?>" />
+                    </div>
+                    <div>
+                        <input class="btn" id="btn-edit" type="button" value="Edit">
+                        <input class="btn" type="submit" value="Save" name="btn-save">
+                    </div>
+                </div>
             </form>
         </div>
-        <div>
+        <div class="outer-box">
             <h2>Quiz Data</h2>
-
-            <label>Created:</label>
-            <span><?= $count_row_quiz_user ?></span>
-            <br>
-
-            <label>Solved:</label>
-            <span><?= $count_quiz_solved ?></span>
-            <br>
-
-            <label>Passed:</label>
-            <span><?= $count_quiz_passed ?></span>
-            <br>
-
-            <label>Failed:</label>
-            <span><?= $count_quiz_solved - $count_quiz_passed ?></span>
-            <br>
-
-            <label>Favourite:</label>
-            <span><?= $count_quiz_favourite ?></span>
-            <br>
+            <ul id="quiz-data-box">
+                <li>Created: <?= $count_row_quiz_user ?></li>
+                <li>Solved: <?= $count_quiz_solved ?></li>
+                <li>Passed: <?= $count_quiz_passed ?></li>
+                <li>Failed: <?= $count_quiz_solved - $count_quiz_passed ?></li>
+                <li>Favourite: <?= $count_quiz_favourite ?></li>
+            </ul>
         </div>
-        <div>
+        <div class="outer-box">
             <h2>Solved Quizzes</h2>
-
-            <ol id="quiz-list">
+            <div id="quiz-list">
                 <?php while ($row = $progress_quiz_table->fetch(PDO::FETCH_OBJ)) : ?>
-                <div class="quiz-card">
-                    <li>
-                        <h3><?= $row->title ?></h3>
-                        <small>Category: <?= $row->category ?></small>
-                        <br><small>Difficulty: <?= $row->difficulty ?></small>
-                        <p><?= $row->description ?></p>
-                        <br><small>Marks: <?= $row->obtained_marks . '/' . $row->total_marks ?></small>
-                        <br><small>Result: <?= $row->result ?></small>
-                        <br><small>Attempted on: <?= $row->attempt_on ?></small>
-
-                        <?php if ($row->is_favourite == "1") : ?>
-                        <img src="../img/heart_filled_icon.png" alt="filled heart icon">
-                        <?php else : ?>
-                        <img src="../img/heart_icon.png" alt="heart icon">
-                        <?php endif; ?>
-                    </li>
-                </div>
+                    <div class="quiz-card">
+                        <h3 class="title"><?= $row->title ?></h3>
+                        <div class="quiz-info-box">
+                            <small>Category: <?= $row->category ?></small>
+                            <small>Difficulty: <?= $row->difficulty ?></small>
+                        </div>
+                        <p class="description"><?= $row->description ?></p>
+                        <ul class="quiz-info-box quiz-detail">
+                            <li>Pass/Fail: <b><?= $row->count_passed . "/" . $row->count_attempt - $row->count_passed ?></b></li>
+                            <li>High Score: <b><?= $row->high_score ?></b></li>
+                            <li>Uploaded By: <b><?= $row->upload_by ?></b></li>
+                            <li>Uploaded On: <b><?= $row->upload_on ?></b></li>
+                            <li class="favourite-box">
+                                <span><i id="heart-icon" class='bx bx-heart'></i></span>
+                                <b> <?= $row->count_favourite ?></b>
+                                <input id="is-favourite" type="hidden" name="is-favourite" value="0">
+                            </li>
+                        </ul>
+                        <a class="play-link" href="./play.php?quiz-number=<?= $row->number ?>&is-favourite=0">Play</a>
+                    </div>
                 <?php endwhile; ?>
-            </ol>
-
+            </div>
         </div>
     </main>
     <footer></footer>
