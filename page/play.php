@@ -60,8 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     <input type="hidden" name="quiz-number" value="<?= $row->number ?>">
                     <input type="hidden" name="quiz-is-attempted" value="<?= $quiz_is_attempted ?>">
                     <h3 id="title"><?= $row->quiz_title ?></h3>
-                    <small class="small">Category: <?= $row->category ?></small>
-                    <small class="small">Difficulty: <?= $row->difficulty ?></small>
+                    <div id="small-box">
+                        <small>Category: <?= $row->category ?></small>
+                        <small>Difficulty: <?= $row->difficulty ?></small>
+                    </div>
                     <p id="description"><?= $row->description ?></p>
                     <div id="favourite-box">
                         <small>Add to Favourites</small>

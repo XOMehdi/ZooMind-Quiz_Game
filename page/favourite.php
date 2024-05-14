@@ -43,5 +43,6 @@ $progress_quiz_table->execute([$username]);
         </ol>
     </main>
     </body>
+    <footer></footer>
 
 </html>

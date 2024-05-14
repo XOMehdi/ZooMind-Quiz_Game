@@ -47,50 +47,54 @@ $quiz_table = $conn->query($sql);
     <script src="../js/explore.js" defer></script>
     <title>ZooMind - Explore</title>
     <?php include_once('../include/sidebar.php'); ?>
-</head>
 
-<body>
-    <div class="header">
-        <img id="site-logo" src="../img/site_logo.png" alt="site logo">
-        <li>
-            <input id="search" type="search" placeholder="Search" />
-            <span> Search</span>
-        </li>
+    <header>
         <h1>Explore</h1>
-    </div>
+        <nav id="nav" class="header">
+            <div id="search-box">
+                <input id="search" type="search" placeholder="Search" />
+                <i id="search-icon" class='bx bx-search'></i>
+            </div>
+            <form id="sort-by-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
+                <select id="sort-by" name="sort-by">
+                    <option value="" selected disabled hidden>Sort by</option>
+                    <option value="popularity">Popularity</option>
+                    <option value="difficulty">Difficulty</option>
+                    <option value="latest">Latest</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+            </form>
+        </nav>
+    </header>
     <main>
-        <form id="sort-by-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
-            <select id="sort-by" name="sort-by">
-                <option value="" selected disabled hidden>Sort by</option>
-                <option value="popularity">Popularity</option>
-                <option value="difficulty">Difficulty</option>
-                <option value="latest">Latest</option>
-                <option value="oldest">Oldest</option>
-            </select>
-        </form>
         <form action="./play.php" method="get">
             <ol id="quiz-list">
                 <?php while ($row = $quiz_table->fetch(PDO::FETCH_OBJ)) : ?>
-                <span class="quiz-card">
-                    <h3><?= $row->title ?></h3>
-                    <small>Category: <?= $row->category ?></small>
-                    <small>Difficulty: <?= $row->difficulty ?></small>
-                    <p><?= $row->description ?></p>
-                    <small>Pass/Fail: <?= $row->count_passed . "/" . $row->count_attempt - $row->count_passed ?></small>
-                    <small>High Score: <?= $row->high_score ?></small>
-                    <small>Uploaded By: <?= $row->upload_by ?></small>
-                    <small>Uploaded On: <?= $row->upload_on ?></small>
-                    <br><img id="heart-icon" src="../img/heart_icon.png" alt="heart icon">
-                    <small> <?= $row->count_favourite ?></small>
-
-                    <input id="is-favourite" type="hidden" name="is-favourite" value="0">
-                    <br><a class="play-link" href="./play.php?quiz-number=<?= $row->number ?>&is-favourite=0">Play</a>
-                </span>
+                    <div class="quiz-card">
+                        <h3 class="title"><?= $row->title ?></h3>
+                        <div class="quiz-info-box">
+                            <small>Category: <?= $row->category ?></small>
+                            <small>Difficulty: <?= $row->difficulty ?></small>
+                        </div>
+                        <p class="description"><?= $row->description ?></p>
+                        <ul class="quiz-info-box quiz-detail">
+                            <li>Pass/Fail: <b><?= $row->count_passed . "/" . $row->count_attempt - $row->count_passed ?></b></li>
+                            <li>High Score: <b><?= $row->high_score ?></b></li>
+                            <li>Uploaded By: <b><?= $row->upload_by ?></b></li>
+                            <li>Uploaded On: <b><?= $row->upload_on ?></b></li>
+                            <li class="favourite-box">
+                                <span><i id="heart-icon" class='bx bx-heart'></i></span>
+                                <b> <?= $row->count_favourite ?></b>
+                                <input id="is-favourite" type="hidden" name="is-favourite" value="0">
+                            </li>
+                        </ul>
+                        <a class="play-link" href="./play.php?quiz-number=<?= $row->number ?>&is-favourite=0">Play</a>
+                    </div>
                 <?php endwhile; ?>
             </ol>
         </form>
     </main>
     <footer></footer>
-</body>
+    </body>
 
-</html>body
+</html>

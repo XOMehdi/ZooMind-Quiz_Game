@@ -261,6 +261,7 @@ input[type="submit"] {
   position: absolute;
   bottom: 32px;
   right: 85px;
+  cursor: pointer;
 }
 
 #site_logo-box {

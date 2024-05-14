@@ -51,8 +51,11 @@ li::marker {
     text-transform: uppercase;
 }
 
-.small {
-    margin-right: 40px;
+#small-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 40px;
     color: #787a7c;
 }
 
@@ -149,12 +152,11 @@ li::marker {
 }
 
 
-output p {
+#quiz-result p {
     margin-bottom: 10px;
-    /* font-size: 16px; */
 }
 
-output > h2 {
+#quiz-result > h2 {
     margin-bottom: 30px;
     text-align: center;
     font-size: 30px;
@@ -171,7 +173,9 @@ output > h2 {
         padding: 0;
     }
     
-    .small {
+    #small-box {
+        flex-direction: column;
+        gap: 2px;
         font-size: 10px;
     }
 
@@ -187,11 +191,15 @@ output > h2 {
         width: 100%;
     }
 
-    #title {
+    #title, .question-statement {
         font-size: 16px;
     }
 
     #description, #favourite-box {
         font-size: 13px !important;
+    }
+
+    #quiz-result {
+        text-align: center;
     }
 }
