@@ -18,7 +18,7 @@ main {
 }
 
 .outer-box {
-    margin: 80px 0 120px 0;
+    margin-bottom: 120px;
 }
 
 .outer-box h2 {
