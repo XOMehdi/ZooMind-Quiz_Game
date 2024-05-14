@@ -40,54 +40,35 @@ li::marker {
     margin-bottom: 50px;
 }
 
-input, textarea {
-    display: inline-block;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-}
-
 #title {
-    width: 100%;
-    border-radius: 8px;
-    border-style: none;
-    padding: 10px;
+    margin-bottom: 5px;
     font-size: 28px;
-    background-color: #292727b5;
+    text-transform: lowercase;
     color: #ffffff;
 }
 
-#description {
-    width: 100%;
-    height: 100px;
-    border-radius: 8px;
-    border-style: none;
-    padding: 10px;
-    resize: none;
-    font-size: 16px;
-    background-color: #292727b5;
-    color: #ffffff;
+#title:first-letter {
+    text-transform: uppercase;
 }
 
-#category {
-    width: 300px;
-    border-radius: 3px;
-    border-style: none;
-    padding: 10px;
-    background-color: #292727b5;
-    color: #ffffff;
-}
-
-#difficulty {
-    width: 130px;
-    border-radius: 3px;
-    border-style: none;
-    padding: 10px;
-    background-color: #292727b5;
+.small {
+    margin-right: 40px;
     color: #787a7c;
 }
 
-#difficulty:focus {
+#description {
+    margin: 15px 0 20px 0;
+    font-size: 16px;
     color: #ffffff;
+}
+
+#favourite-box {
+    text-align: end;
+    color: #d6d9dc;
+}
+
+#favourite-box small:hover {
+    text-decoration: underline;
 }
 
 .filled-heart {
@@ -112,21 +93,14 @@ input, textarea {
 }
 
 .question-statement {
-    width: 100%;
-    border-radius: 3px;
-    border-style: none;
-    padding: 10px;
-    background-color: #292727b5;
+    margin-bottom: 10px;
+    font-size: 18px;
     color: #ffffff;
 }
 
 .question-option {
-    width: 150px;
-    border-radius: 2px;
-    border-style: none;
-    padding: 10px;
-    background-color: #292727b5;
-    color: #ffffff;
+    margin: 0 0 5px 15px;
+    color: #d6d9dc;
 }
 
 .correct-option {
@@ -139,14 +113,18 @@ input, textarea {
     color: #ffffff;
 }
 
+#btn-box {
+    text-align: end;
+}
+
 #btn-evaluate {
-    border-radius: 10px;
+    border-radius: 8px;
     border-style: none;
-    padding: 8px 30px;
+    padding: 8px 20px;
     cursor: pointer;
-    background-color: rgba(255, 242, 0, 0.993);
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
+    background-color: #fff200fd;
 }
 
 #btn-evaluate:hover {
@@ -170,9 +148,16 @@ input, textarea {
     margin-bottom: 50px;
 }
 
-output > h2 {
+
+output p {
     margin-bottom: 10px;
+    /* font-size: 16px; */
+}
+
+output > h2 {
+    margin-bottom: 30px;
     text-align: center;
+    font-size: 30px;
     color: #fff200fd;
 }
 
@@ -186,12 +171,27 @@ output > h2 {
         padding: 0;
     }
     
-    input, textarea, select, li {
-        width: 100% !important;
+    .small {
+        font-size: 10px;
+    }
+
+    input, li {
         font-size: 12px;
     }
 
-    #title, #description {
-        font-size: 14px;
+    .correct-option {
+        width: 80%;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+    }
+
+    #title {
+        font-size: 16px;
+    }
+
+    #description, #favourite-box {
+        font-size: 13px !important;
     }
 }

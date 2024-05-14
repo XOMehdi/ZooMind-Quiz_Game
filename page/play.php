@@ -59,16 +59,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 <div id="quiz-box">
                     <input type="hidden" name="quiz-number" value="<?= $row->number ?>">
                     <input type="hidden" name="quiz-is-attempted" value="<?= $quiz_is_attempted ?>">
-                    <h3><?= $row->quiz_title ?></h3>
-                    <small>Category: <?= $row->category ?></small>
-                    <small>Difficulty: <?= $row->difficulty ?></small>
-                    <p><?= $row->description ?></p>
-                    <div>
+                    <h3 id="title"><?= $row->quiz_title ?></h3>
+                    <small class="small">Category: <?= $row->category ?></small>
+                    <small class="small">Difficulty: <?= $row->difficulty ?></small>
+                    <p id="description"><?= $row->description ?></p>
+                    <div id="favourite-box">
                         <small>Add to Favourites</small>
                         <?php if ($is_favourite == "0") : ?>
-                        <span><i id="heart-icon" class='bx bx-heart'></i></span>
+                            <span><i id="heart-icon" class='bx bx-heart'></i></span>
                         <?php else : ?>
-                        <span><i id="heart-icon" class='bx bxs-heart filled-heart'></i></span>
+                            <span><i id="heart-icon" class='bx bxs-heart filled-heart'></i></span>
                         <?php endif; ?>
                         <input id="is-favourite" type="hidden" name="is-favourite" value="<?= $is_favourite ?>">
                     </div>
@@ -76,49 +76,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
                 <?php $index = 0;
                 while ($row = $question_table->fetch(PDO::FETCH_OBJ)) : ?>
-                <ol id="ordered-list-question">
-                    <div class="question-box">
-                        <li>
-                            <input type="hidden" name="question-ids[]" value="<?= $row->id ?>">
-                            <p id="question"><?= $row->statement ?></p>
-                            <ol id="ordered-list-option" class="ordered-list-option">
-                                <?php
-                                $sql = "SELECT *, title AS option_title FROM options WHERE question_id = ? ORDER BY number ASC";
-                                $option_table = $conn->prepare($sql);
-                                $option_table->execute([$row->id]);
+                    <ol id="ordered-list-question">
+                        <div class="question-box">
+                            <li>
+                                <input type="hidden" name="question-ids[]" value="<?= $row->id ?>">
+                                <p class="question-statement"><?= $row->statement ?></p>
+                                <ol id="ordered-list-option" class="ordered-list-option">
+                                    <?php
+                                    $sql = "SELECT *, title AS option_title FROM options WHERE question_id = ? ORDER BY number ASC";
+                                    $option_table = $conn->prepare($sql);
+                                    $option_table->execute([$row->id]);
 
-                                while ($row = $option_table->fetch(PDO::FETCH_OBJ)) {
-                                    echo "<li>$row->option_title</li>";
-                                } ?>
-                            </ol>
+                                    while ($row = $option_table->fetch(PDO::FETCH_OBJ)) {
+                                        echo "<li class='question-option'>$row->option_title</li>";
+                                    } ?>
+                                </ol>
 
-                            <input class="correct-option" type="number" name="selected-options[]"
-                                placeholder="Enter your selected option number">
-                            <div>
-                                <?php
-                                if (isset($_COOKIE['is_attempt_correct'])) {
-                                    $is_attempt_correct = unserialize($_COOKIE['is_attempt_correct']);
-                                    if ($is_attempt_correct[$index]) {
-                                        echo 'Correct <span>&#10003;</span>';
-                                    } else {
-                                        echo 'Incorrect <span>&#10007;</span>';
+                                <input class="correct-option" type="number" name="selected-options[]" placeholder="Enter your selected option number">
+                                <div>
+                                    <?php
+                                    if (isset($_COOKIE['is_attempt_correct'])) {
+                                        $is_attempt_correct = unserialize($_COOKIE['is_attempt_correct']);
+                                        if ($is_attempt_correct[$index]) {
+                                            echo 'Correct <span>&#10003;</span>';
+                                        } else {
+                                            echo 'Incorrect <span>&#10007;</span>';
+                                        }
                                     }
-                                }
-                                $index += 1;
-                                ?>
-                            </div>
-                        </li>
-                    </div>
-                </ol>
+                                    $index += 1;
+                                    ?>
+                                </div>
+                            </li>
+                        </div>
+                    </ol>
                 <?php endwhile; ?>
-                <input id="btn-evaluate" type="submit" name="btn-submit-quiz" value="Evaluate">
+                <div id="btn-box">
+                    <input id="btn-evaluate" type="submit" name="btn-submit-quiz" value="Evaluate">
+                </div>
             </form>
             <output id="quiz-result">
                 <?php if ($quiz_is_attempted) : ?>
-                <h2>Quiz Result</h2>
-                <p>Obtained Marks: <?= $obtained_marks ?></p>
-                <p>Total Marks: <?= $total_marks ?></p>
-                <p>Result: <?= $result ?></p>
+                    <h2>Quiz Result</h2>
+                    <p>Obtained Marks: <?= $obtained_marks ?></p>
+                    <p>Total Marks: <?= $total_marks ?></p>
+                    <p>Result: <?= $result ?></p>
                 <?php endif; ?>
             </output>
         </div>
