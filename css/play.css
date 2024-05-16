@@ -74,10 +74,12 @@ li::marker {
     text-decoration: underline;
 }
 
-.filled-heart {
+.bx-heart, .bxs-heart {
     cursor: pointer;
-    color: #fff200fd;
-    font-size: 18px;
+}
+
+.bxs-heart {
+    color: #fff200
 }
 
 .question-box {

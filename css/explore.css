@@ -114,6 +114,14 @@ main {
     color: #d6d9dc;
 }
 
+.bx-heart, .bxs-heart {
+    cursor: pointer;
+}
+
+.bxs-heart {
+    color: #fff200
+}
+
 .play-link {
     position: absolute;
     right: 15px;

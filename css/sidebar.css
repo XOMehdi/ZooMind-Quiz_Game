@@ -87,7 +87,7 @@ label #btn {
 
 #cancel {
     display: none;
-    z-index: 1111;
+    z-index: 1;
     left: 195px;
     top: 17px;
     font-size: 30px;

@@ -83,9 +83,8 @@ $quiz_table = $conn->query($sql);
                             <li>Uploaded By: <b><?= $row->upload_by ?></b></li>
                             <li>Uploaded On: <b><?= $row->upload_on ?></b></li>
                             <li class="favourite-box">
-                                <span><i id="heart-icon" class='bx bx-heart'></i></span>
-                                <b> <?= $row->count_favourite ?></b>
-                                <input id="is-favourite" type="hidden" name="is-favourite" value="0">
+                                <span><i class='heart-icon bx bx-heart'></i> <b><?= $row->count_favourite ?></b></span>
+                                <input class="is-favourite" type="hidden" name="is-favourite" value="0">
                             </li>
                         </ul>
                         <a class="play-link" href="./play.php?quiz-number=<?= $row->number ?>&is-favourite=0">Play</a>

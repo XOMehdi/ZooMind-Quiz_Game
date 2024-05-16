@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         <?php if ($is_favourite == "0") : ?>
                             <span><i id="heart-icon" class='bx bx-heart'></i></span>
                         <?php else : ?>
-                            <span><i id="heart-icon" class='bx bxs-heart filled-heart'></i></span>
+                            <span><i id="heart-icon" class='bx bxs-heart'></i></span>
                         <?php endif; ?>
                         <input id="is-favourite" type="hidden" name="is-favourite" value="<?= $is_favourite ?>">
                     </div>

@@ -3,10 +3,12 @@ const isFavouriteInput = document.getElementById("is-favourite");
 
 heartIcon.onclick = () => {
   if (isFavouriteInput.value == "0") {
-    heartIcon.classList.add('filled-heart');
+    heartIcon.classList.add("bxs-heart");
+    heartIcon.classList.remove("bx-heart");
     isFavouriteInput.value = "1";
   } else {
-    heartIcon.classList.remove('filled-heart');
+    heartIcon.classList.add("bx-heart");
+    heartIcon.classList.remove("bxs-heart");
     isFavouriteInput.value = "0";
   }
 };
