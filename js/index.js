@@ -118,13 +118,13 @@ function signUp(e) {
 }
 
 function signIn(e) {
-  if (!signInUsernameInput.value || !signInPasswordInput.value) {
-    signInerrorMessage.innerText = "Please provide a username and a password";
-    return;
-  }
-
   if (e.key === "Enter" || e.type === "click") {
     e.preventDefault();
+
+    if (!signInUsernameInput.value || !signInPasswordInput.value) {
+      signInerrorMessage.innerText = "Please provide a username and a password";
+      return;
+    }
 
     let formData = new FormData(document.getElementById("sign_in-form"));
 
