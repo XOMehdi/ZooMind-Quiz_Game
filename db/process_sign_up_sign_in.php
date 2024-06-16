@@ -42,25 +42,29 @@ if ($action === "sign_up") {
     $sign_in_username = test_input($_POST['sign_in-username']);
     $sign_in_password = test_input($_POST['sign_in-password']);
 
-    $hashed_sign_in_password = password_hash($sign_in_password, PASSWORD_DEFAULT);
-
-    $query = $conn->prepare("SELECT * FROM user WHERE username = ?");
-    $query->execute([$sign_in_username]);
-
-    $row = $query->fetch(PDO::FETCH_OBJ);
-
-    // if ($sign_in_username === $row->username && $sign_in_password === $row->password) {
-    if ($sign_in_username === $row->username && password_verify($sign_in_password, $row->password)) {
-
-        $_SESSION['username'] = $sign_in_username;
-        $_SESSION['password'] = $sign_in_password;
-
-        // $_SESSION['password'] = $hashed_sign_in_password;
-
-        echo "success";
+    if (empty($sign_in_username) || empty($sign_in_password)) {
+        echo "Please provide a username and a password";
     } else {
-        echo 'Invalid username or password';
+        $hashed_sign_in_password = password_hash($sign_in_password, PASSWORD_DEFAULT);
+
+        $query = $conn->prepare("SELECT * FROM user WHERE username = ?");
+        $query->execute([$sign_in_username]);
+
+        $row = $query->fetch(PDO::FETCH_OBJ);
+
+        // if ($sign_in_username === $row->username && $sign_in_password === $row->password) {
+        if ($sign_in_username === $row->username && password_verify($sign_in_password, $row->password)) {
+
+            $_SESSION['username'] = $sign_in_username;
+            $_SESSION['password'] = $sign_in_password;
+
+            // $_SESSION['password'] = $hashed_sign_in_password;
+
+            echo "success";
+        } else {
+            echo "Invalid username or password";
+        }
     }
 } else {
-    // Handle invalid action
+    echo "failed";
 }

@@ -235,10 +235,6 @@ input[type="submit"] {
   text-align: center;
 }
 
-#main-input-box {
-  position: relative;
-}
-
 #sign_in-username {
   border-radius: 15px;
   width: 500px;
@@ -255,13 +251,17 @@ input[type="submit"] {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
-#forward-icon {
+#forward-icon-username, #forward-icon-password {
   display: block;
   width: 30px;
   position: absolute;
-  bottom: 32px;
-  right: 85px;
+  top:12px;
+  right: 15px;
   cursor: pointer;
+}
+
+#forward-icon-password {
+  display: none;
 }
 
 #site_logo-box {
@@ -294,6 +294,12 @@ input[type="submit"] {
   transition: height 0.3s ease-in-out;
 }
 
+.error-message {
+  margin-top: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: small;
+  color: #ff0000;
+}
 
 @media only screen and (max-width: 500px), (max-height: 500px) {
   #main-box {
@@ -346,16 +352,12 @@ input[type="submit"] {
   input[type="password"] {
     width: 220px !important;
   }
-  
-  #forward-icon {
-    display: block;
-    width: 30px;
-    position: absolute;
-    bottom: 32px;
-    right: 60px;
-  }
 
   #checkbox-box {
     margin-top: 10px;
+  }
+
+  .error-message {
+    margin-top: 5px;
   }
 }
