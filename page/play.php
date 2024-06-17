@@ -76,9 +76,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     </div>
                 </div>
 
-                <?php $index = 0;
-                while ($row = $question_table->fetch(PDO::FETCH_OBJ)) : ?>
-                    <ol id="ordered-list-question">
+                <ol id="ordered-list-question">
+                    <?php $index = 0;
+                    while ($row = $question_table->fetch(PDO::FETCH_OBJ)) : ?>
                         <div class="question-box">
                             <li>
                                 <input type="hidden" name="question-ids[]" value="<?= $row->id ?>">
@@ -110,8 +110,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                 </div>
                             </li>
                         </div>
-                    </ol>
-                <?php endwhile; ?>
+                    <?php endwhile; ?>
+                </ol>
                 <div id="btn-box">
                     <input id="btn-evaluate" type="submit" name="btn-submit-quiz" value="Evaluate">
                 </div>
