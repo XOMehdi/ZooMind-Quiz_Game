@@ -146,28 +146,28 @@ input, textarea {
     font-size: 70px;
 }
 
-#btn-post {
-    border-radius: 10px;
-    border-style: none;
-    padding: 8px 30px;
-    cursor: pointer;
-    background-color: rgba(255, 242, 0, 0.993);
-    font-size: 24px;
-    font-weight: bold;
-}
-
-#btn-post:hover {
-    border: 2px solid #ffdf0cc5;
-    background-color: transparent;
-    color: white;
-}
-
 #btn-box {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
     align-items: end;
     gap: 70px;
+}
+
+.btn {
+    border-radius: 8px;
+    border-style: none;
+    padding: 8px 30px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: #fff200fd;
+}
+
+.btn:hover {
+    border: 2px solid #ffdf0cc5;
+    background-color: transparent;
+    color: #ffffff;
 }
 
 @media only screen and (max-width: 500px), (max-height: 500px) {
@@ -185,7 +185,11 @@ input, textarea {
         font-size: 12px;
     }
 
-    #title, #description {
+    #title, .question-statement {
+        font-size: 16px;
+    }
+
+    #description {
         font-size: 14px;
     }
 

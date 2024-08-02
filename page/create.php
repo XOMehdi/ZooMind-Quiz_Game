@@ -8,7 +8,7 @@ include('../secure.php');
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../css/create.css" />
+    <link rel="stylesheet" type="text/css" href="../css/temp.css" />
     <script src="../js/create.js" defer></script>
     <title>ZooMind - Create Quiz</title>
     <?php include_once('../include/sidebar.php'); ?>
@@ -61,9 +61,9 @@ include('../secure.php');
                     </div>
                 </ol>
 
-                <div id="btn-box">
+                <div id="create-btn-box">
                     <span><i id="add-question-icon" class='bx bx-plus-circle'></i></span>
-                    <input id="btn-post" type="submit" name="btn-post" value="Post" />
+                    <input class="btn" type="submit" name="btn-post" value="Post" />
                 </div>
             </form>
         </div>
