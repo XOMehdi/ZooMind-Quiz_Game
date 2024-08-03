@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../css/temp.css" />
+    <link rel="stylesheet" type="text/css" href="../css/page.css" />
     <script src="../js/play.js" defer></script>
     <title>ZooMind - Play</title>
     <?php include_once('../include/sidebar.php'); ?>

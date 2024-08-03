@@ -8,7 +8,7 @@ include('../secure.php');
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../css/temp.css" />
+    <link rel="stylesheet" type="text/css" href="../css/page.css" />
     <script src="../js/create.js" defer></script>
     <title>ZooMind - Create Quiz</title>
     <?php include_once('../include/sidebar.php'); ?>
@@ -20,11 +20,11 @@ include('../secure.php');
         <div id="outer-quiz-box">
             <form id="create-quiz-form" action="../db/process_create.php" method="post">
                 <div id="quiz-box">
-                    <input id="title" type="text" placeholder="Quiz Title" name="title" onmouseenter="myMouse()"
+                    <input id="create-title" type="text" placeholder="Quiz Title" name="title" onmouseenter="myMouse()"
                         onmouseleave="mouse()" />
                     <!-- <textarea id="title" placeholder="Quiz Title" name="title" onmouseenter="myMouse()" onmouseleave="mouse()"></textarea>
                  -->
-                    <textarea id="description" placeholder="Description" name="description" onmouseenter="des()"
+                    <textarea id="create-description" placeholder="Description" name="description" onmouseenter="des()"
                         onmouseleave="cription()"></textarea>
                     <input onmouseenter="cate()" onmouseleave="gory()" id="category" type="text" name="category"
                         placeholder="Category: Cat / Dog / Bird / Fish etc" />

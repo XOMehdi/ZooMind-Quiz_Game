@@ -43,7 +43,7 @@ $quiz_table = $conn->query($sql);
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../css/explore.css" />
+    <link rel="stylesheet" type="text/css" href="../css/page.css" />
     <script src="../js/explore.js" defer></script>
     <title>ZooMind - Explore</title>
     <?php include_once('../include/sidebar.php'); ?>
@@ -78,7 +78,7 @@ $quiz_table = $conn->query($sql);
                         </div>
                         <p class="description"><?= $row->description ?></p>
                         <ul class="quiz-info-box quiz-detail">
-                            <li>Pass/Fail: <b><?= $row->count_passed . "/" . $row->count_attempt - $row->count_passed ?></b></li>
+                            <li>Pass/Fail: <b><?= $row->count_passed . "/" . ($row->count_attempt - $row->count_passed) ?></b></li>
                             <li>High Score: <b><?= $row->high_score ?></b></li>
                             <li>Uploaded By: <b><?= $row->upload_by ?></b></li>
                             <li>Uploaded On: <b><?= $row->upload_on ?></b></li>
