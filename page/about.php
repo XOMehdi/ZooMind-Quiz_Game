@@ -2,23 +2,11 @@
 session_start();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../css/main.css" />
-    <!-- <script src="../js/about.js" defer></script> -->
-    <title>ZooMind - About</title>
-    <?php include_once('../include/sidebar.php'); ?>
-
-    <header>
-    </header>
+<?php include_once('../include/header.php'); ?>
+<?php include_once('../include/sidebar.php'); ?>
     <main id="about-box">
         <img id="site-logo" src="../img/site_logo.png">
         <div id="text-box">
-            <h1>About</h1>
             <h5>ZooMind <span style="color: #FFC000">Founders</span> </h5>
             <h5>Mohammad Mehdi <span>&</span> Abdullah Khan</h5>
             <p>ZooMind is an interactive and educational web application that allows users to test their
@@ -32,7 +20,4 @@ session_start();
             <input type="button" id="btn" value="Contact Us">
         </div>
     </main>
-    <footer></footer>
-    </body>
-
-</html>
+<?php include_once('../include/footer.php'); ?>

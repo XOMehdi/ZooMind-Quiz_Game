@@ -2,20 +2,8 @@
 include('../secure.php');
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../css/page.css" />
-    <script src="../js/create.js" defer></script>
-    <title>ZooMind - Create Quiz</title>
-    <?php include_once('../include/sidebar.php'); ?>
-
-    <header>
-        <h1>Create Quiz</h1>
-    </header>
+<?php include_once('../include/header.php'); ?>
+<?php include_once('../include/sidebar.php'); ?>
     <main>
         <div id="outer-quiz-box">
             <form id="create-quiz-form" action="../db/process_create.php" method="post">
@@ -67,8 +55,4 @@ include('../secure.php');
                 </div>
             </form>
         </div>
-    </main>
-    <footer></footer>
-    </body>
-
-</html>
+<?php include_once('../include/footer.php'); ?>

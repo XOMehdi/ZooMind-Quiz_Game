@@ -47,20 +47,8 @@ $progress_quiz_table = $conn->prepare($sql);
 $progress_quiz_table->execute([$username]);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../css/page.css" />
-    <script src="../js/profile.js" defer></script>
-    <title>ZooMind - Profile</title>
-    <?php include_once('../include/sidebar.php'); ?>
-
-    <header>
-        <h1>Profile</h1>
-    </header>
+<?php include_once('../include/header.php'); ?>
+<?php include_once('../include/sidebar.php'); ?>
     <main>
         <div class="outer-box">
             <h2>Personal Information</h2>
@@ -127,7 +115,4 @@ $progress_quiz_table->execute([$username]);
             </div>
         </div>
     </main>
-    <footer></footer>
-    </body>
-
-</html>
+<?php include_once('../include/footer.php'); ?>

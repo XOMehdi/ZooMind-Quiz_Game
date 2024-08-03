@@ -39,20 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../css/page.css" />
-    <script src="../js/play.js" defer></script>
-    <title>ZooMind - Play</title>
-    <?php include_once('../include/sidebar.php'); ?>
-
-    <header>
-        <h1>Play</h1>
-    </header>
+<?php include_once('../include/header.php'); ?>
+<?php include_once('../include/sidebar.php'); ?>
     <main class="main-text">
         <div id="outer-quiz-box">
             <form action="../db/process_play.php" method="post">
@@ -126,10 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             </output>
         </div>
     </main>
-    <footer></footer>
-    </body>
-
-</html>
+<?php include_once('../include/footer.php'); ?>
 
 <?php
 setcookie('is_attempt_correct', '', time() - 3600, '/');
