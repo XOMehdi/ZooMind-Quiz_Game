@@ -19,4 +19,6 @@ $page_title = ucwords($filename);
 </head>
 
 <body>
-    <header><?= $page_title ?></header>
+    <header>
+        <h1><?= $page_title ?></h1>
+    </header>

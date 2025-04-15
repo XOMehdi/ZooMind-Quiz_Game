@@ -167,7 +167,8 @@ header,
 }
 
 header h1 {
-    font-size: 60px;
+    margin: 15px 0;
+    font-size: 56px;
 }
 
 main {
