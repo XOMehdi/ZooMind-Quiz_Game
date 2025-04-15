@@ -235,13 +235,13 @@ a:hover {
 }
 
 #sign_in-username {
-  border-radius: 15px;
-  width: 500px;
+  border-radius: 15px !important;
+  width: 500px !important;
 }
 
 #sign_in-password {
-  width: 500px;
-  border-radius: 0 0 15px 15px;
+  width: 500px !important;
+  border-radius: 0 0 15px 15px !important;
 }
 
 #sign_in-username:focus,
