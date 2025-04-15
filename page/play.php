@@ -39,32 +39,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../css/play.css" />
-    <script src="../js/play.js" defer></script>
-    <title>ZooMind - Play</title>
-    <?php include_once('../include/sidebar.php'); ?>
-
-    <header>
-        <h1>Play</h1>
-    </header>
+<?php include_once('../include/header.php'); ?>
+<?php include_once('../include/sidebar.php'); ?>
     <main class="main-text">
         <div id="outer-quiz-box">
             <form action="../db/process_play.php" method="post">
                 <div id="quiz-box">
                     <input type="hidden" name="quiz-number" value="<?= $row->number ?>">
                     <input type="hidden" name="quiz-is-attempted" value="<?= $quiz_is_attempted ?>">
-                    <h3 id="title"><?= $row->quiz_title ?></h3>
+                    <h3 id="play-title"><?= $row->quiz_title ?></h3>
                     <div id="small-box">
                         <small>Category: <?= $row->category ?></small>
                         <small>Difficulty: <?= $row->difficulty ?></small>
                     </div>
-                    <p id="description"><?= $row->description ?></p>
+                    <p id="play-description"><?= $row->description ?></p>
                     <div id="favourite-box">
                         <small>Add to Favourites</small>
                         <?php if ($is_favourite == "0") : ?>
@@ -82,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         <div class="question-box">
                             <li>
                                 <input type="hidden" name="question-ids[]" value="<?= $row->id ?>">
-                                <p class="question-statement"><?= $row->statement ?></p>
+                                <p class="play-question-statement"><?= $row->statement ?></p>
                                 <ol id="ordered-list-option" class="ordered-list-option">
                                     <?php
                                     $sql = "SELECT *, title AS option_title FROM options WHERE question_id = ? ORDER BY number ASC";
@@ -90,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                                     $option_table->execute([$row->id]);
 
                                     while ($row = $option_table->fetch(PDO::FETCH_OBJ)) {
-                                        echo "<li class='question-option'>$row->option_title</li>";
+                                        echo "<li class='play-question-option'>$row->option_title</li>";
                                     } ?>
                                 </ol>
 
@@ -112,8 +100,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                         </div>
                     <?php endwhile; ?>
                 </ol>
-                <div id="btn-box">
-                    <input id="btn-evaluate" type="submit" name="btn-submit-quiz" value="Evaluate">
+                <div id="play-btn-box">
+                    <input class="btn" type="submit" name="btn-submit-quiz" value="Evaluate">
                 </div>
             </form>
             <output id="quiz-result">
@@ -126,10 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             </output>
         </div>
     </main>
-    <footer></footer>
-    </body>
-
-</html>
+<?php include_once('../include/footer.php'); ?>
 
 <?php
 setcookie('is_attempt_correct', '', time() - 3600, '/');

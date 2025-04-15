@@ -11,19 +11,8 @@ $progress_quiz_table->execute([$username]);
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/favourite.css">
-    <title>ZooMind - Favourites</title>
-    <?php include_once('../include/sidebar.php'); ?>
-
-    <header>
-        <h1>Favourites</h1>
-    </header>
+<?php include_once('../include/header.php'); ?>
+<?php include_once('../include/sidebar.php'); ?>
     <main>
         <div id="quiz-list">
             <?php while ($row = $progress_quiz_table->fetch(PDO::FETCH_OBJ)) : ?>
@@ -36,7 +25,7 @@ $progress_quiz_table->execute([$username]);
                         </div>
                         <p class="description"><?= $row->description ?></p>
                         <ul class="quiz-info-box quiz-detail">
-                            <li>Pass/Fail: <b><?= $row->count_passed . "/" . $row->count_attempt - $row->count_passed ?></b></li>
+                            <li>Pass/Fail: <b><?= $row->count_passed . "/" . ($row->count_attempt - $row->count_passed) ?></b></li>
                             <li>High Score: <b><?= $row->high_score ?></b></li>
                             <li>Uploaded By: <b><?= $row->upload_by ?></b></li>
                             <li>Uploaded On: <b><?= $row->upload_on ?></b></li>
@@ -52,7 +41,4 @@ $progress_quiz_table->execute([$username]);
             <?php endwhile; ?>
         </div>
     </main>
-    </body>
-    <footer></footer>
-
-</html>
+<?php include_once('../include/footer.php'); ?>

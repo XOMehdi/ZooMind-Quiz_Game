@@ -5,13 +5,20 @@
 }
 
 body {
-  padding: 20px;
   background-color: #000000;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 img {
   display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 #main-box {
@@ -48,6 +55,7 @@ img {
   font-size: 22px;
   font-weight: bold;
   text-decoration: none;
+  color: #0f87e2;
 }
 
 .btn-link-box {
@@ -68,7 +76,7 @@ img {
   margin: 10px 50px 0 50px;
   font-size: 18px !important;
   font-weight: normal !important;
-  color: #422727;
+  color: #422727 !important;
 }
 
 .sign_up-sign_in:hover {
@@ -116,17 +124,8 @@ img {
   padding: 50px 0 20px 0;
 }
 
-a {
-  text-decoration: none;
-  color: #0f87e2;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-input[type="text"],
-input[type="password"] {
+#homepage input[type="text"],
+#homepage input[type="password"] {
   height: 55px;
   border: 2px groove #ffffff;
   border-radius: 5px;
@@ -135,8 +134,8 @@ input[type="password"] {
   outline: none;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
+#homepage input[type="text"]:focus,
+#homepage input[type="password"]:focus {
   border: 1px solid #0071e3;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -146,8 +145,8 @@ input[type="password"]:focus {
   width: 220px;
 }
 
-#username,
-input[type="password"] {
+#homepage #username,
+#homepage input[type="password"] {
   width: 443px;
 }
 
@@ -165,17 +164,17 @@ input[type="password"] {
   color: #8c8784;
 }
 
-label[for="first_name"],
-label[for="last_name"] {
+#homepage label[for="first_name"],
+#homepage label[for="last_name"] {
   top: 30px;
 }
 
-#username:focus + label,
-.has-text + label,
-#sign_in-username:focus + label,
-.has-text + label,
-input[type="password"]:focus + label,
-.has-text + label {
+#homepage #username:focus + label,
+#homepage .has-text + label,
+#homepage #sign_in-username:focus + label,
+#homepage .has-text + label,
+#homepage input[type="password"]:focus + label,
+#homepage .has-text + label {
   top: 4px;
   font-size: 12px;
 }
@@ -192,12 +191,12 @@ input[type="password"]:focus + label,
   font-size: 16px;
 }
 
-input[type="button"] {
+#homepage input[type="button"] {
   border: 2px solid #dadada;
   color: #298fdf;
 }
 
-input[type="submit"] {
+#homepage input[type="submit"] {
   border: 2px solid #1f8adb;
   background-color: #298fdf;
   color: #ffffff;
@@ -236,13 +235,13 @@ input[type="submit"] {
 }
 
 #sign_in-username {
-  border-radius: 15px;
-  width: 500px;
+  border-radius: 15px !important;
+  width: 500px !important;
 }
 
 #sign_in-password {
-  width: 500px;
-  border-radius: 0 0 15px 15px;
+  width: 500px !important;
+  border-radius: 0 0 15px 15px !important;
 }
 
 #sign_in-username:focus,
@@ -348,8 +347,8 @@ input[type="submit"] {
     width: 70%;
   }
   
-  input[type="text"],
-  input[type="password"] {
+  #homepage input[type="text"],
+  #homepage input[type="password"] {
     width: 220px !important;
   }
 

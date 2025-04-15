@@ -86,63 +86,13 @@ addQuestionIcon.addEventListener("click", function () {
 });
 
 // css effects
-function myMouse() {
-  const x = document.getElementById("title");
-  x.style.borderBottom = "2px solid yellow";
-}
-
-function mouse() {
-  const x = document.getElementById("title");
-  x.style.borderBottom = "none";
-}
-//------//
-function des() {
-  const x = document.getElementById("description");
-  x.style.borderBottom = "2px solid yellow";
-}
-
-function cription() {
-  const x = document.getElementById("description");
-  x.style.borderBottom = "none";
-}
-//-----//
-function cate() {
-  const x = document.getElementById("category");
-  x.style.borderBottom = "2px solid yellow";
-}
-
-function gory() {
-  const x = document.getElementById("category");
-  x.style.borderBottom = "none";
-}
-//------//
-function diff() {
-  const x = document.getElementById("difficulty");
-  x.style.borderBottom = "2px solid yellow";
-}
-
-function ficulty() {
-  const x = document.getElementById("difficulty");
-  x.style.borderBottom = "none";
-}
-//-----//
-function question() {
-  const x = document.getElementById("question");
-  x.style.borderBottom = "2px solid yellow";
-}
-
-function box() {
-  const x = document.getElementById("question");
-  x.style.borderBottom = "none";
-}
-//-----//
-function option() {
-  const x = document.getElementById("option");
-  x.style.borderBottom = "2px solid yellow";
-}
-
-function boxes() {
-  const x = document.getElementById("option");
-  x.style.borderBottom = "none";
-}
-//----//
+const inputFields = document.querySelectorAll(".mouse-effect");
+inputFields.forEach((inputField) => {
+  inputField.onmouseenter = () => {
+    inputField.style.borderBottom = "2px solid yellow";
+  };
+  
+  inputField.onmouseleave = () => {
+    inputField.style.borderBottom = "none";
+  };
+});

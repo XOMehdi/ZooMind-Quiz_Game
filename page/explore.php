@@ -34,22 +34,9 @@ if (isset($_GET['sort-by'])) {
 
 $sql = "SELECT * FROM quiz ORDER BY $sort_by $sort_direction";
 $quiz_table = $conn->query($sql);
-
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../css/explore.css" />
-    <script src="../js/explore.js" defer></script>
-    <title>ZooMind - Explore</title>
-    <?php include_once('../include/sidebar.php'); ?>
-
-    <header>
-        <h1>Explore</h1>
+<?php include_once('../include/header.php'); ?>
         <nav id="nav" class="header">
             <div id="search-box">
                 <input id="search" type="search" placeholder="Search" />
@@ -65,7 +52,9 @@ $quiz_table = $conn->query($sql);
                 </select>
             </form>
         </nav>
-    </header>
+
+<?php include_once('../include/sidebar.php'); ?>
+    
     <main>
         <form action="./play.php" method="get">
             <div id="quiz-list">
@@ -78,7 +67,7 @@ $quiz_table = $conn->query($sql);
                         </div>
                         <p class="description"><?= $row->description ?></p>
                         <ul class="quiz-info-box quiz-detail">
-                            <li>Pass/Fail: <b><?= $row->count_passed . "/" . $row->count_attempt - $row->count_passed ?></b></li>
+                            <li>Pass/Fail: <b><?= $row->count_passed . "/" . ($row->count_attempt - $row->count_passed) ?></b></li>
                             <li>High Score: <b><?= $row->high_score ?></b></li>
                             <li>Uploaded By: <b><?= $row->upload_by ?></b></li>
                             <li>Uploaded On: <b><?= $row->upload_on ?></b></li>
@@ -93,7 +82,4 @@ $quiz_table = $conn->query($sql);
             </div>
         </form>
     </main>
-    <footer></footer>
-    </body>
-
-</html>
+<?php include_once('../include/footer.php'); ?>
